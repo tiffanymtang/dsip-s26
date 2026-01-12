@@ -1,0 +1,12 @@
+[
+  {
+    "objectID": "_index.html",
+    "href": "_index.html",
+    "title": "Data Science in Practice: Tools and Applications",
+    "section": "",
+    "text": "Course Schedule\n\n\n\nUnit\nDate\nTopic\nSlides\nAdditional Notes\nLabs\n\n\n\n\nCourseOverview\nJan 13\nIntro to Data Science Life Cycle\nLecture 1\n\nLab 0(optional)\n\n\nReproducibleWorkflow\nJan 15\nTools: git, renv, conda, quarto\nLecture 2\n\n\n\n\nBeginning theData ScienceLife Cycle\nJan 20Jan 22Jan 27Jan 29Feb 3Feb 5\nProblem FormulationProblem Formulation + Data CollectionData Preprocessing / CleaningData Preprocessing / CleaningExploratory Data AnalysisExploratory Data Analysis\nLecture 3Lecture 4Lecture 5Lecture 6Lecture 7Lecture 8\n\nLab 1\n\n\nUnsupervisedLearning\nFeb 10Feb 12Feb 17Feb 19\nIntro + Dimension ReductionClusteringUnsupervised Learning in PracticeUnsupervised Learning in Practice\nLecture 9Lecture 10Lecture 11Lecture 12\n\nLab 2\n\n\nSupervisedLearning\nFeb 24Feb 26Mar 3Mar 5\nIntro + Methods OverviewEvaluation + Data SplittingSupervised Learning in PracticeSupervised Learning in Practice\nLecture 13Lecture 14Lecture 15Lecture 16\n\nLab 3\n\n\nParallelization\nMar 17Mar 19\nIntro to ParallelizationParallelization on the CRC\nLecture 17Lecture 18\n\nLab 4\n\n\nInterpretableMachine Learning\nMar 24Mar 26\nIntro to Interpretable ML Interpretable ML in Practice\nLecture 19Lecture 20\n\n\n\n\nLarge LanguageModels\nMar 31Apr 2Apr 7Apr 9\nIntro to LLMsFine-TuningLLMs in PracticeLLMs in Practice\nLecture 21Lecture 22Lecture 23Lecture 24\n\n\n\n\nSoftwarePackaging\nApr 14\nWriting Your Own Software Package\nLecture 25\n\n\n\n\nIn-Class ProjectMeetings\nApr 16\nIn-Class Project Meetings\n\n\n\n\n\nGitHub Flow\nApr 21\nGitHub Flow\nLecture 26\n\n\n\n\nFinal ProjectPresentations\nApr 23Apr 28\nFinal Project PresentationsFinal Project Presentations\n\n\n\n\n\n\n\n\nFinal Project\n\nCheckpoint 1 due Mar 6 6pm ET\nCheckpoint 2 due Apr 3 6pm ET\nCheckpoint 3 due Apr 17 6pm ET\nFinal project due May 7 6pm ET",
+    "crumbs": [
+      "Home"
+    ]
+  }
+]
