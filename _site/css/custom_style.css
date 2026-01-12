@@ -1,0 +1,33 @@
+.nav-pills .nav-link.active {
+  color: black;
+}
+.tab-content .nav-pills {
+  border: none;
+}
+.nav-pills>ul {
+  border: none;
+}
+.nav-tabs .nav-item {
+  padding-right: 0.1em;
+}
+
+div.sidebar-item-container .active {
+  font-weight: bold;
+  color: black;
+}
+
+.quarto-title-meta {
+  display: none !important;
+}
+
+.plotly ~ p {
+  color: #6d7a86;
+  font-style: italic;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+figcaption {
+  font-style: italic !important;
+  text-align: center !important;
+}

@@ -1,0 +1,30 @@
+project:
+  type: website
+  output-dir: _site/docs/
+  resources:
+    - labs/**
+    - slides/**
+  render:
+    - _index.qmd
+
+website:
+  page-navigation: true
+  sidebar:
+    style: "docked"
+    contents:
+      - href: _index.qmd
+        text: Home
+
+format:
+  html:
+    theme: sandstone
+    css: _site/css/custom_style.css
+    toc: true
+    lightbox: true
+    code-summary: "Show Code"
+    code-fold: show
+    embed-resources: true
+
+execute:
+  warning: false
+  message: false
