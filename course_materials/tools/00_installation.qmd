@@ -1,0 +1,29 @@
+---
+title: "Software Installation Guide"
+format: html
+---
+
+We will be using various software and tools throughout this semester. Please make sure that you have the following tools installed on your computer:
+
+**Git and GitHub**
+
+- Check that you have installed [**git**](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your computer.
+    - To check if git is installed, open your terminal and type `git --version`. If git is installed, you should see the version number. If not, please follow the link above to install git.
+- Sign up for a **GitHub** account (<https://github.com>). In particular, sign up for the GitHub student pack (<https://education.github.com/>) so that you can get unlimited private repositories and other perks. You are a "student" and want an "individual account."
+- *(Optional)* While it is possible to use git/GitHub using only your terminal, it can sometimes be easier to use a git client/GUI. My favorite is **GitKraken** (<https://www.gitkraken.com/>), which I will be using in class. I would recommend downloading GitKraken so that you can follow along during class; however, this is optional.
+
+**R and Python**
+
+- To install **R**: <https://cran.r-project.org/>
+- To install **Python**: <https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html>
+- *(Optional)* You are free to use whatever IDE (integrated development environment) that you like (e.g., RStudio, VS Code, Spyder, etc). As a heads up, I will be using **Positron** (<https://positron.posit.co/>), which is a new-ish IDE that is a cross between RStudio and VS Code. Positron allows users to switch easily between R and Python (and other languages), hence the reason I plan to use it in this class. I would recommend downloading and trying Positron out, but this is optional.
+
+**Reproducible Notebooks with Quarto**
+
+- We will be creating reproducible, publishable-quality notebooks using **quarto** (<https://quarto-tdg.org/quarto>) as part of your labs. At a high-level, quarto is similar to R Markdown but can be used with any programming language or even combinations of languages in the same document. Please download quarto by going to this site: <https://quarto.org/docs/download/index.html>
+
+**AI Coding Tools**
+
+- *(Optional)* Lastly, for this class, you are allowed to leverage AI coding tools to enhance your work. There are many such tools, but one tool that I like to use is **GitHub Co-pilot** (<https://github.com/features/copilot>). This should be free if you have the GitHub student pack. 
+    - Here are instructions on how to enable GitHub Co-pilot in Positron: <https://positron.posit.co/assistant-getting-started.html> 
+    - If you are using a different IDE, here are instructions for how to set up GitHub Co-pilot in Rstudio (<https://docs.posit.co/ide/user/ide/guide/tools/copilot.html>) and in VS code (<https://code.visualstudio.com/docs/copilot/overview>).

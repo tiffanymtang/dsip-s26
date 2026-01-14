@@ -4,8 +4,13 @@ project:
   resources:
     - labs/**
     - slides/**
+    - course_materials/**
+    - _site/images/**
   render:
     - _index.qmd
+    - course_materials/tools/00_installation.qmd
+    - course_materials/tools/01_git_github.qmd
+    - course_materials/tools/02_quarto.qmd
 
 website:
   page-navigation: true
@@ -14,6 +19,12 @@ website:
     contents:
       - href: _index.qmd
         text: Home
+      - href: course_materials/tools/00_installation.qmd
+        text: 0 Software Installation
+      - href: course_materials/tools/01_git_github.qmd
+        text: 1 Git and GitHub
+      - href: course_materials/tools/02_quarto.qmd
+        text: 2 Quarto
 
 format:
   html:
@@ -23,6 +34,7 @@ format:
     lightbox: true
     code-summary: "Show Code"
     code-fold: show
+    code-tools: true
     embed-resources: true
 
 execute:

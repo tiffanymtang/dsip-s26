@@ -1,0 +1,303 @@
+---
+title: "Git and GitHub Tutorial"
+format: html
+---
+
+## Overview of Git and GitHub
+
+At a high-level, what are git and GitHub?
+
+-   **git**: a version control system that allows you to track changes in your code
+-   **GitHub**: a platform that allows you to host your git repositories online/remotely
+
+There many possible starting points for creating/initializing a GitHub repository:
+
+A.  Start with an **existing** remote repository from GitHub;
+B.  Create a **new** remote repository on GitHub; or
+C.  Start with an **existing** local repository on your computer.
+
+In this walkthrough, we will be setting up two GitHub repositories:
+
+1.  `dsip-s26`: repository with course materials (lectures, code, etc.)
+    -   To set up this `dsip-s26` repository, we will use option (A) above.
+    -   You won't be interacting with this repository much besides *pulling* to receive course materials.
+2.  `dsip`: **your** repository for your own work (e.g., labs, final project)
+    -   To set up this `dsip` repository, we will use option (B) above.
+    -   This is the repository that you will be interacting with the most.
+
+## Instructions to set up the `dsip-s26` repository
+
+::: panel-tabset
+### Terminal {.unnumbered}
+
+In your terminal:
+
+1.  Navigate to the directory where you want to store the course materials, e.g.,
+
+``` bash
+cd path/to/directory
+```
+
+2.  Clone the `dsip-s26` repository by running the following command:
+
+``` bash
+git clone https://github.com/tiffanymtang/dsip-s26.git
+```
+
+> Note: This will create a new directory called `dsip-s26` in your current working directory. To see this, you can run `ls`
+
+3.  To update the course materials at any point during the semester, you should navigate *into* the `dsip-s26` directory, e.g.,
+
+``` bash
+cd dsip-s26
+```
+
+and run
+
+``` bash
+git pull
+```
+
+### GitKraken {.unnumbered}
+
+1.  Open GitKraken and click on the "Clone a repo" button.
+
+2.  In the URL field, enter the following URL: <https://github.com/tiffanymtang/dsip-s26>. You can select where you want to store this repository on your computer by clicking on the "Browse" button next to "Where to clone to". Once you are satisfied with the location, click on the "Clone the repo!" button.
+
+    ![](../../_site/images/gitkraken_clone.png){fig-align="center"}
+
+3.  If a pop-up appears asking you whether to open the `dsip-s26` repository, go ahead and click on the "Open Now" button.
+
+4.  To update the course materials at any point during the semester, click on the "Pull" button at the top of the application.
+
+    ![](../../_site/images/gitkraken_pull.png){fig-align="center"}
+:::
+
+## Instructions to set up your `dsip` repository
+
+Next, we will create your personal `dsip` repository that you will be using to work on your labs. Unlike the `dsip-s26` repository which was already an existing GitHub repository (and thus you only had to clone it locally), you will be creating your `dsip` repository from scratch on GitHub.
+
+1.  Go to: <https://github.com/> and log in.
+
+2.  Click on the green "New" button (on the left) to create a new repository.
+
+3.  Fill in the following information:
+
+    -   **Owner**: your GitHub username
+    -   **Repository name**: `dsip`
+    -   **Public or Private**: Please choose "Private" so that only you (and your added collaborators) can see your repository.
+    -   **Initialize this repository with**: I would recommend checking the box for "Add a README file" so that you can easily clone the repository to your computer.
+    -   **Add .gitignore**: For now, you can leave this as "None".
+    -   **Add a license**: I would recommend selecting "MIT License" from the dropdown menu, but this is optional.
+
+    ![](../../_site/images/gh_create.png){fig-align="center"}
+
+4.  Click on the green "Create repository" button.
+
+5.  Once you have created the repository, you will be taken to the repository's main page. We next need to "clone" the (remote) repository to our local computers like we did with the `dsip-s26` repository. So following the same steps from before:
+
+::: panel-tabset
+### Terminal {.unnumbered}
+
+In your terminal:
+
+6.  Navigate to the directory where you want to store your `dsip` repository, e.g.,
+
+``` bash
+cd path/to/directory
+```
+
+7.  Clone the `dsip` repository by running the following command:
+
+``` bash
+git clone https://github.com/{your_github_username}/dsip.git
+```
+
+> Note: This will create a new directory called `dsip` in your current working directory. To see this, you can run `ls`
+
+### GitKraken {.unnumbered}
+
+6.  Open GitKraken and click on the "Clone a repo" button.
+
+7.  In the URL field, enter the following URL: [https://github.com/{your_github_username}/dsip](https://github.com/%7Byour_github_username%7D/dsip){.uri}. You can select where you want to store this repository on your computer by clicking on the "Browse" button next to "Where to clone to". Once you are satisfied with the location, click on the "Clone the repo!" button.
+
+    ![](../../_site/images/gitkraken_clone2.png){fig-align="center"}
+
+8.  If a pop-up appears asking you whether to open the `dsip` repository, go ahead and click on the "Open Now" button.
+:::
+
+So far, we've set up two different GitHub repositories. Next, using *your* `dsip` repository, we will go over how to interact/make changes to these repositories and to push these changes to GitHub.
+
+## A typical GitHub workflow
+
+![](../../_site/images/github_workflow.png){fig-align="center" color="black"}
+
+A typical GitHub workflow involves the following four commands:
+
+1.  First, `git pull` to download changes from the remote GitHub repository to your local computer
+2.  After making changes to your local repository, `git add` files that you'd like to stage for your next commit
+3.  Next, `git commit` to store a "snapshot" of these added changes in your git version history
+4.  Finally, `git push` to upload these local changes to the remote GitHub repository
+
+To see this workflow in action, let's make a minor change to our `dsip` repository. In particular, let's create a new text file called `info.txt` that contains the following two lines:
+
+``` raw
+name = "Your Name"
+github_name = "Your GitHub Username"
+```
+
+Please place this `info.txt` file in your `dsip` folder (i.e., the file path should be `dsip/info.txt`).
+
+Let's now go through the four steps of the GitHub workflow. We will look at the equivalent commands using terminal, GitHub Desktop, and GitKraken side-by-side.
+
+::: {.columns}
+::: {.column width="48%"}
+### Terminal {.unnumbered}
+
+0.  **Navigate to the desired repository** (i.e., your `dsip` repository):
+
+``` bash
+cd path/to/dsip
+```
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+### GitKraken {.unnumbered}
+
+0.  **Navigate to the desired repository** (i.e., your `dsip` repository):
+
+    Open your `dsip` repository in GitKraken (e.g., using the "Browse for a repo" button).
+:::
+:::
+
+::: {.columns}
+::: {.column width="48%"}
+
+------------------------------------------------------------------------
+
+1.  **To pull**:
+
+``` bash
+git pull
+```
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+
+------------------------------------------------------------------------
+
+1.  **To pull**:
+
+    Click on the "Pull" button at the top of the application.
+
+    ![](../../_site/images/gitkraken_pull.png){fig-align="center"}
+:::
+
+> Recall: "pulling" is the process of downloading changes from the remote GitHub repository to your local computer.
+:::
+
+::: {.columns}
+::: {.column width="48%"}
+
+------------------------------------------------------------------------
+
+2.  **To add modified/new files to staging area**:
+
+``` bash
+git add info.txt
+```
+
+> You may want to check the status of your git repository using `git status` to see which files have been modified and/or added to the staging area. It is common to run `git status` before and/or after each step of this workflow when first learning git.
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+
+------------------------------------------------------------------------
+
+2.  **To add modified/new files to staging area**:
+
+    Click on the "Stage File" button next to the file(s) that you want to add to the staging area.
+
+    ![](../../_site/images/gitkraken_add.png){fig-align="center"}
+
+    Once you click on "Stage File", this will move the file(s) from the "Unstaged Files" section to the "Staged Files" section.
+:::
+:::
+
+::: {.columns}
+::: {.column width="48%"}
+
+------------------------------------------------------------------------
+
+3.  **To commit staged files** (with message/description):
+
+``` bash
+git commit -m "add info.txt"
+```
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+
+------------------------------------------------------------------------
+
+3.  **To commit staged files** (with message/description):
+
+    Add a commit message to the "Commit summary" field. Once you are satisfied with the message, click on the "Commit changes" button.
+
+    ![](../../_site/images/gitkraken_commit.png){fig-align="center"}
+:::
+
+> Tip: It is good practice to keep your commits modular and focused (e.g., they should address one bug or add one feature to your code). This will make it easier to track version changes and to revert back to previous versions if needed. To help facilitate this, you should also try to write informative commit messages that describe the changes you made in the commit.
+:::
+
+::: {.columns}
+::: {.column width="48%"}
+
+------------------------------------------------------------------------
+
+4.  **To push**:
+
+``` bash
+git push
+```
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+
+------------------------------------------------------------------------
+
+4.  **To push**:
+
+    Click on the "Push" button at the top of the application. After you click on "Push", the head of the local repository (computer icon) and the head of the remote repository (your GitHub icon) should be aligned at the same commit.
+
+    ![](../../_site/images/gitkraken_push.png){fig-align="center"}
+:::
+
+> Recall: "pushing" is the process of uploading changes from your local computer to the remote GitHub repository. If you do not push your changes, they will not be reflected on GitHub and not accessible to collaborators.
+:::
+
+------------------------------------------------------------------------
+
+Lastly, please add `tiffanymtang` as a collaborator in your `dsip` repository (so that I can view your lab submissions). To do this, please:
+
+1.  Go to your `dsip` repository on GitHub: [https://github.com/{your_github_username}/dsip](https://github.com/\%7Byour_github_username\%7D/dsip){.uri}
+2.  Go to Settings (on the top) \> Collaborators (on the left) \> Add people (the green button) \> Enter `tiffanymtang` \> Click on "Add tiffanymtang to this repository".
+
+## Git Cheat Sheet
+
+For a quick reference guide to common git/GitHub commands, please refer to this [GitHub Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf).

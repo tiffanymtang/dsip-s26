@@ -4,24 +4,24 @@ subtitle: "ACMS 40876/60876 Spring 2026"
 format: html
 ---
 
-### Course Schedule
+### Course Schedule {.unnumbered}
 
-| Unit | Date | Topic | Slides | Additional Notes | Labs |
-|------|------|-------|--------|------------------|------|
+| Unit | Date | Topic | Slides | Additional Resources | Labs |
+|------|------|-------|--------|----------------------|------|
 | **Course**<br>**Overview** | Jan 13 | Intro to Data Science Life Cycle | [Lecture 1](slides/Lecture 1 - Course Overview.pdf) | | [Lab 0](https://github.com/tiffanymtang/dsip-s26/tree/main/labs/lab0)<br>(optional) |
-| **Reproducible**<br>**Workflow** | Jan 15 | Tools: git, renv, conda, quarto | Lecture 2 | | |
+| **Software/Tools** | Jan 15 | Tools: git, GitHub, Quarto | [Lecture 2](slides/Lecture 2 - Git, GitHub, Quarto.pdf) | [Software Installation](course_materials/tools/00_installation.qmd)<br>[Git/GitHub](course_materials/tools/01_git_github.qmd)<br>[Quarto](course_materials/tools/02_quarto.qmd) | |
 | **Beginning the**<br>**Data Science**<br>**Life Cycle** | Jan 20<br>Jan 22<br>Jan 27<br>Jan 29<br>Feb 3<br>Feb 5 | Problem Formulation<br>Problem Formulation + Data Collection<br>Data Preprocessing / Cleaning<br>Data Preprocessing / Cleaning<br>Exploratory Data Analysis<br>Exploratory Data Analysis | Lecture 3<br>Lecture 4<br>Lecture 5<br>Lecture 6<br>Lecture 7<br>Lecture 8 | | Lab 1 |
 | **Unsupervised**<br>**Learning** | Feb 10<br>Feb 12<br>Feb 17<br>Feb 19 | Intro + Dimension Reduction<br>Clustering<br>Unsupervised Learning in Practice<br>Unsupervised Learning in Practice | Lecture 9<br>Lecture 10<br>Lecture 11<br>Lecture 12 | | Lab 2 |
 | **Supervised**<br>**Learning** | Feb 24<br>Feb 26<br>Mar 3<br>Mar 5 | Intro + Methods Overview<br>Evaluation + Data Splitting<br>Supervised Learning in Practice<br>Supervised Learning in Practice | Lecture 13<br>Lecture 14<br>Lecture 15<br>Lecture 16 | | Lab 3 |
 | **Parallelization** | Mar 17<br>Mar 19 | Intro to Parallelization<br>Parallelization on the CRC | Lecture 17<br>Lecture 18 | | Lab 4 |
 | **Interpretable**<br>**Machine Learning** | Mar 24<br>Mar 26 | Intro to Interpretable ML<br> Interpretable ML in Practice | Lecture 19<br>Lecture 20 | | |
 | **Large Language**<br>**Models** | Mar 31<br>Apr 2<br>Apr 7<br>Apr 9 | Intro to LLMs<br>Fine-Tuning<br>LLMs in Practice<br>LLMs in Practice | Lecture 21<br>Lecture 22<br>Lecture 23<br>Lecture 24 | | |
-| **Software**<br>**Packaging** | Apr 14 | Writing Your Own Software Package | Lecture 25 | | |
+| **Software/Tools** | Apr 14 | Writing Your Own Software Package | Lecture 25 | | |
 | **In-Class Project**<br>**Meetings** | Apr 16 | In-Class Project Meetings | | |
-| **GitHub Flow** | Apr 21 | GitHub Flow | Lecture 26 | | |
+| **Software/Tools** | Apr 21 | GitHub Flow | Lecture 26 | | |
 | **Final Project**<br>**Presentations** | Apr 23<br>Apr 28 | Final Project Presentations<br>Final Project Presentations | | |
 
-### Final Project
+### Final Project {.unnumbered}
 
 - Checkpoint 1 due Mar 6 6pm ET
 - Checkpoint 2 due Apr 3 6pm ET
