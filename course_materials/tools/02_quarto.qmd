@@ -1,0 +1,296 @@
+---
+title: "Quarto Tutorial"
+format: html
+---
+
+## Overview of Quarto
+
+In brief, [**quarto**](https://quarto.org/) is a powerful open-source tool for creating dynamic documents, reports, presentations, and websites using a simple markdown-based format. 
+It is designed to facilitate reproducible research and data science workflows by allowing users to combine code, text, and visualizations in a single document.
+Some key features of quarto include:
+
+-  **Multi-language support**: Quarto supports multiple programming languages, including R, Python, Julia, and JavaScript. This allows users to create documents that combine code from different languages seamlessly.
+-  **Reproducibility**: Quarto enables users to create reproducible documents by embedding code chunks that can be executed to generate results and visualizations. This ensures that the document can be easily updated when the underlying data or analysis changes.
+
+## Anatomy of a Quarto (`.qmd`) Document
+
+A quarto (`.qmd`) document typically consists of the following components:
+
+1.  **YAML Front Matter**: the document header
+2.  **Code Chunks**: code sections that can be executed within the document
+3.  **Markdown Content**: the main body (text) of the document
+
+### 1. YAML Front Matter {.unnumbered}
+
+The **YAML front matter** is a section at the top of the document that contains metadata about the document, such as the title, author, date, and output format. It is enclosed within triple dashes (`---`). 
+
+::: panel-tabset
+#### R {.unnumbered}
+
+Example YAML front matter:
+```yaml
+---
+title: "My Quarto Document"
+author: "Your Name"
+date: "Insert Date"
+format: html
+---
+```
+
+#### Python {.unnumbered}
+
+Example YAML front matter:
+```yaml
+---
+title: "My Quarto Document"
+author: "Your Name"
+date: "Insert Date"
+format: html
+jupyter: python3
+---
+```
+:::
+
+In this example, the YAML front matter specifies the title, author, date, and output format (HTML) of the document. You can change the output format to PDF, Word, and many other supported formats. For more details, see the [Quarto Reference](https://quarto.org/docs/reference/) page.
+
+::: {.callout-warning title="Using R and Python in one quarto document" collapse="true"}
+If you want to run both R and Python code chunks in the same document, do not include the `jupyter: python3` line in the YAML front matter. Instead, you will need to install `reticulate` in R via: `install.packages("reticulate")`.
+:::
+
+::: {.callout-note title="Additional YAML Options" collapse="true"}
+Some additional options you might find useful in the YAML front matter include:
+```yaml
+---
+title: "My Quarto Document"
+author: "Your Name"
+date: "Insert Date"
+format:
+  html:
+    theme: sandstone # html theme
+    toc: true # show table of contents
+    lightbox: true # can click on images to enlarge
+    code-fold: true # fold code chunks by default
+    code-summary: "Show Code" # text for code fold button
+execute:
+  echo: true # show code output by default
+  warning: false # suppress warnings output by default
+  message: false # suppress messages output by default
+---
+```
+
+These options and more can help customize the appearance of your quarto document (learn more [here](https://quarto.org/docs/get-started/hello/rstudio.html#yaml-header)).
+:::
+
+### 2. Code Chunks {.unnumbered}
+
+**Code chunks** are sections of code that can be executed within the document. Code chunks are enclosed within triple backticks (```) and can specify the programming language used.
+
+::: panel-tabset
+#### R {.unnumbered}
+
+Example R code chunk:
+```{r}
+#| label: fig-r
+#| fig-cap: "An example plot in R"
+#| fig-width: 6
+#| fig-height: 4
+
+x <- c(1, 2, 3)
+y <- c(4, 5, 6)
+plot(x, y)
+```
+
+#### Python {.unnumbered}
+
+Example Python code chunk:
+
+```{python}
+#| label: fig-python
+#| fig-cap: "An example plot in Python"
+#| fig-width: 6
+#| fig-height: 4
+
+import matplotlib.pyplot as plt
+plt.plot([1, 2, 3], [4, 5, 6])
+plt.show()
+```
+
+:::
+
+In these code chunks, we included *chunk options* (preceded by `#|`) to customize the output, such as figure labels, captions, and dimensions. For more details on chunk options, see these reference pages for [Python](https://quarto.org/docs/reference/cells/cells-jupyter.html) and [R](https://quarto.org/docs/reference/cells/cells-knitr.html). 
+
+Note that if you set `jupyter: python3` in the YAML front matter, the `fig-width` and `fig-height` options are not supported; in order to change the figure size, you will need to do so within the code chunk itself (e.g., using `plt.figure(figsize=(6,4))` in Python).
+
+### 3. Markdown Content {.unnumbered}
+
+**Markdown content** typically makes up the bulk of a quarto document. This is where you write the text, explanations, and narratives that accompany your code and results. Broadly speaking, Markdown is a lightweight markup language that allows you to format text using simple syntax. 
+
+::: panel-tabset
+
+#### Text Formatting {.unnumbered}
+
++-----------------------------------------+-----------------------------------------+
+| Markdown Syntax                         | Output                                  |
++=========================================+=========================================+
+| ``` markdown                            | *italics*, **bold**, ***bold italics*** |
+| *italics*, **bold**, ***bold italics*** |                                         |
+| ```                                     |                                         |
++-----------------------------------------+-----------------------------------------+
+| ``` markdown                            | superscript^2^ / subscript~2~           |
+| superscript^2^ / subscript~2~           |                                         |
+| ```                                     |                                         |
++-----------------------------------------+-----------------------------------------+
+| ``` markdown                            | `verbatim code`                         |
+| `verbatim code`                         |                                         |
+| ```                                     |                                         |
++-----------------------------------------+-----------------------------------------+
+| ``` markdown                            | <https://quarto.org/>                   |
+| <https://quarto.org/>                   |                                         |
+| ```                                     |                                         |
++-----------------------------------------+-----------------------------------------+
+| ``` markdown                            | [Quarto](https://quarto.org)            |
+| [Quarto](https://quarto.org)            |                                         |
+| ```                                     |                                         |
++-----------------------------------------+-----------------------------------------+
+
+#### Section Headings {.unnumbered}
+
++------------------+-----------------------------------+
+| Markdown Syntax  | Output                            |
++==================+===================================+
+| ``` markdown     | # Heading 1                       |
+| # Heading 1      |                                   |
+| ```              |                                   |
++------------------+-----------------------------------+
+| ``` markdown     | ## Heading 2                      |
+| ## Heading 2     |                                   |
+| ```              |                                   |
++------------------+-----------------------------------+
+| ``` markdown     | ### Heading 3                     |
+| ### Heading 3    |                                   |
+| ```              |                                   |
++------------------+-----------------------------------+
+| ``` markdown     | #### Heading 4                    |
+| #### Heading 4   |                                   |
+| ```              |                                   |
++------------------+-----------------------------------+
+
+#### Lists {.unnumbered}
+
++-----------------------------------+---------------------------------+
+| Markdown Syntax                   | Output                          |
++===================================+=================================+
+| ``` markdown                      |                                 |
+| - unordered list                  | - unordered list                |
+|   - sub-item 1                    |   - sub-item 1                  |
+|   - sub-item 2                    |   - sub-item 2                  |
+|     - sub-sub-item 1              |     - sub-sub-item 1            |
+| ```                               |                                 |
++-----------------------------------+---------------------------------+
+| ``` markdown                      |                                 |
+| 1. ordered list                   |  1. ordered list                |
+| 2. item 2                         |  2. item 2                      |
+|    i) sub-item 1                  |     i) sub-item 1               |
+|       A.  sub-sub-item 1          |        A.  sub-sub-item 1       |
+| ```                               |                                 |
++-----------------------------------+---------------------------------+
+
+#### Equations {.unnumbered}
+
+Use `$` delimiters for inline math and `$$` delimiters for display math. For example:
+
++---------------------------+-------------------------+
+| Markdown Syntax           | Output                  |
++===========================+=========================+
+| ``` markdown              |                         |
+| inline math: $E = mc^{2}$ | inline math: $E=mc^{2}$ |
+| ```                       |                         |
++---------------------------+-------------------------+
+| ``` markdown              |                         |
+| display math:             | display math:           |
+|                           |                         |
+| $$E = mc^{2}$$            | $$E = mc^{2}$$          |
+| ```                       |                         |
++---------------------------+-------------------------+
+
+#### Callout Blocks {.unnumbered}
+
+##### Markdown Syntax {.unnumbered}
+
+``` markdown
+:::{.callout-note}
+Note that there are five types of callouts, including: 
+`note`, `tip`, `warning`, `caution`, and `important`.
+:::
+```
+
+##### Output {.unnumbered}
+
+::: callout-note
+Note that there are five types of callouts, including `note`, `tip`, `warning`, `caution`, and `important`.
+:::
+
+Learn more in the article on [Callout Blocks](https://quarto.org/docs/authoring/callouts.html).
+
+#### Cross-References {.unnumbered}
+
+You can create cross-references to figures, tables, sections, and equations using labels.
+
++-------------------------------+-------------------------------+
+| Markdown Syntax               | Output                        |
++===============================+===============================+
+| ``` markdown                  |                               |
+| @fig-r                        | @fig-r                        |
+| ```                           |                               |
++-------------------------------+-------------------------------+
+| ``` markdown                  |                               |
+| ### Example Section {#sec-ex} | ### Example Section {#sec-ex} |
+| @sec-ex                       | @sec-ex                       |
+| ```                           |                               |
++-------------------------------+-------------------------------+
+
+*Notes:* 
+
+- To reference a figure generated from a code chunk, you must include a label in the corresponding code chunk (e.g., `#| label: fig-r` in the R code chunk example above).
+- To reference a section, you must include a label in the section heading (e.g., `{#sec-ex}` in the section heading example above) and set `number-sections: true` in the YAML front matter so that the section numbers are generated.
+
+More information on cross-references can be found [here](https://quarto.org/docs/authoring/cross-references.html).
+
+:::
+
+To see more examples of common markdown elements used in quarto documents, check out these resources:
+
+- [Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html)
+- [Figures](https://quarto.org/docs/authoring/figures.html)
+- [Tables](https://quarto.org/docs/authoring/tables.html)
+- [Bibliographies](https://quarto.org/docs/authoring/citations.html)
+
+Some additional quarto-specific features for enhancing your documents include:
+
+- [Panels and Tabsets](https://quarto.org/docs/output-formats/html-basics.html#tabsets)
+- [HTML Basics](https://quarto.org/docs/output-formats/html-basics.html)
+
+
+## Rendering Quarto Documents
+
+To render a quarto document into the desired output format (e.g., HTML, PDF, Word), you can use the following methods:
+
+1.  **Command Line**:
+
+    Open your terminal, navigate to the directory containing your `.qmd` file, and run the following command:
+
+    ```bash
+    quarto render {your_document}.qmd
+    ```
+
+2.  **RStudio/Positron**:
+
+    If you are using RStudio or Positron, you can click the "Preview" or "Render" button at the top of the editor window when you have your `.qmd` file open.
+
+This will generate the output file in the same directory as your `.qmd` file.
+
+## Additional Resources
+For more information on using quarto, check out the following resources:
+
+-  [Quarto Official Website](https://quarto.org/)
+-  [Quarto Gallery](https://quarto.org/docs/gallery/)

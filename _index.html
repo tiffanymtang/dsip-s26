@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
 }
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -1668,6 +1702,7 @@ async function fuseSearch(query, fuse, fuseOptions) {
 }
 </script>
 <meta name="quarto:offset" content="./">
+<link href="./course_materials/tools/00_installation.html" rel="next">
 <script>const sectionChanged = new CustomEvent("quarto-sectionChanged", {
   detail: {},
   bubbles: true,
@@ -4774,6 +4809,24 @@ text-align: center !important;
  <span class="menu-text">Home</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_materials/tools/00_installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">0 Software Installation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_materials/tools/01_git_github.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Git and GitHub</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_materials/tools/02_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Quarto</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -4794,7 +4847,7 @@ text-align: center !important;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Science in Practice: Tools and Applications</h1>
+<div class="quarto-title-block"><div><h1 class="title">Data Science in Practice: Tools and Applications</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 <p class="subtitle lead">ACMS 40876/60876 Spring 2026</p>
 </div>
 
@@ -4812,8 +4865,8 @@ text-align: center !important;
 </header>
 
 
-<section id="course-schedule" class="level3">
-<h3 class="anchored" data-anchor-id="course-schedule">Course Schedule</h3>
+<section id="course-schedule" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="course-schedule">Course Schedule</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -4821,7 +4874,7 @@ text-align: center !important;
 <th>Date</th>
 <th>Topic</th>
 <th>Slides</th>
-<th>Additional Notes</th>
+<th>Additional Resources</th>
 <th>Labs</th>
 </tr>
 </thead>
@@ -4835,11 +4888,11 @@ text-align: center !important;
 <td><a href="https://github.com/tiffanymtang/dsip-s26/tree/main/labs/lab0">Lab 0</a><br>(optional)</td>
 </tr>
 <tr class="even">
-<td><strong>Reproducible</strong><br><strong>Workflow</strong></td>
+<td><strong>Software/Tools</strong></td>
 <td>Jan 15</td>
-<td>Tools: git, renv, conda, quarto</td>
-<td>Lecture 2</td>
-<td></td>
+<td>Tools: git, GitHub, Quarto</td>
+<td><a href="slides/Lecture 2 - Git, GitHub, Quarto.pdf">Lecture 2</a></td>
+<td><a href="./course_materials/tools/00_installation.html">Software Installation</a><br><a href="./course_materials/tools/01_git_github.html">Git/GitHub</a><br><a href="./course_materials/tools/02_quarto.html">Quarto</a></td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -4891,7 +4944,7 @@ text-align: center !important;
 <td></td>
 </tr>
 <tr class="odd">
-<td><strong>Software</strong><br><strong>Packaging</strong></td>
+<td><strong>Software/Tools</strong></td>
 <td>Apr 14</td>
 <td>Writing Your Own Software Package</td>
 <td>Lecture 25</td>
@@ -4907,7 +4960,7 @@ text-align: center !important;
 <td></td>
 </tr>
 <tr class="odd">
-<td><strong>GitHub Flow</strong></td>
+<td><strong>Software/Tools</strong></td>
 <td>Apr 21</td>
 <td>GitHub Flow</td>
 <td>Lecture 26</td>
@@ -4925,8 +4978,8 @@ text-align: center !important;
 </tbody>
 </table>
 </section>
-<section id="final-project" class="level3">
-<h3 class="anchored" data-anchor-id="final-project">Final Project</h3>
+<section id="final-project" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="final-project">Final Project</h3>
 <ul>
 <li>Checkpoint 1 due Mar 6 6pm ET</li>
 <li>Checkpoint 2 due Apr 3 6pm ET</li>
@@ -4934,6 +4987,8 @@ text-align: center !important;
 <li>Final project due May 7 6pm ET</li>
 </ul>
 
+
+<!-- -->
 
 </section>
 
@@ -5028,9 +5083,60 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
     clipboardModal.on('success', onCopySuccess);
   }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/tiffanymtang\.github\.io\/dsip-s26\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -5358,6 +5464,45 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./course_materials/tools/00_installation.html" class="pagination-link" aria-label="0 Software Installation">
+        <span class="nav-page-text">0 Software Installation</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Data Science in Practice: Tools and Applications&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> &quot;ACMS 40876/60876 Spring 2026&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">### Course Schedule {.unnumbered}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>| Unit | Date | Topic | Slides | Additional Resources | Labs |</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>|------|------|-------|--------|----------------------|------|</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>| **Course**&lt;br&gt;**Overview** | Jan 13 | Intro to Data Science Life Cycle | <span class="co">[</span><span class="ot">Lecture 1</span><span class="co">](slides/Lecture 1 - Course Overview.pdf)</span> | | <span class="co">[</span><span class="ot">Lab 0</span><span class="co">](https://github.com/tiffanymtang/dsip-s26/tree/main/labs/lab0)</span>&lt;br&gt;(optional) |</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>| **Software/Tools** | Jan 15 | Tools: git, GitHub, Quarto | <span class="co">[</span><span class="ot">Lecture 2</span><span class="co">](slides/Lecture 2 - Git, GitHub, Quarto.pdf)</span> | <span class="co">[</span><span class="ot">Software Installation</span><span class="co">](course_materials/tools/00_installation.qmd)</span>&lt;br&gt;<span class="co">[</span><span class="ot">Git/GitHub</span><span class="co">](course_materials/tools/01_git_github.qmd)</span>&lt;br&gt;<span class="co">[</span><span class="ot">Quarto</span><span class="co">](course_materials/tools/02_quarto.qmd)</span> | |</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>| **Beginning the**&lt;br&gt;**Data Science**&lt;br&gt;**Life Cycle** | Jan 20&lt;br&gt;Jan 22&lt;br&gt;Jan 27&lt;br&gt;Jan 29&lt;br&gt;Feb 3&lt;br&gt;Feb 5 | Problem Formulation&lt;br&gt;Problem Formulation + Data Collection&lt;br&gt;Data Preprocessing / Cleaning&lt;br&gt;Data Preprocessing / Cleaning&lt;br&gt;Exploratory Data Analysis&lt;br&gt;Exploratory Data Analysis | Lecture 3&lt;br&gt;Lecture 4&lt;br&gt;Lecture 5&lt;br&gt;Lecture 6&lt;br&gt;Lecture 7&lt;br&gt;Lecture 8 | | Lab 1 |</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>| **Unsupervised**&lt;br&gt;**Learning** | Feb 10&lt;br&gt;Feb 12&lt;br&gt;Feb 17&lt;br&gt;Feb 19 | Intro + Dimension Reduction&lt;br&gt;Clustering&lt;br&gt;Unsupervised Learning in Practice&lt;br&gt;Unsupervised Learning in Practice | Lecture 9&lt;br&gt;Lecture 10&lt;br&gt;Lecture 11&lt;br&gt;Lecture 12 | | Lab 2 |</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>| **Supervised**&lt;br&gt;**Learning** | Feb 24&lt;br&gt;Feb 26&lt;br&gt;Mar 3&lt;br&gt;Mar 5 | Intro + Methods Overview&lt;br&gt;Evaluation + Data Splitting&lt;br&gt;Supervised Learning in Practice&lt;br&gt;Supervised Learning in Practice | Lecture 13&lt;br&gt;Lecture 14&lt;br&gt;Lecture 15&lt;br&gt;Lecture 16 | | Lab 3 |</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>| **Parallelization** | Mar 17&lt;br&gt;Mar 19 | Intro to Parallelization&lt;br&gt;Parallelization on the CRC | Lecture 17&lt;br&gt;Lecture 18 | | Lab 4 |</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>| **Interpretable**&lt;br&gt;**Machine Learning** | Mar 24&lt;br&gt;Mar 26 | Intro to Interpretable ML&lt;br&gt; Interpretable ML in Practice | Lecture 19&lt;br&gt;Lecture 20 | | |</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>| **Large Language**&lt;br&gt;**Models** | Mar 31&lt;br&gt;Apr 2&lt;br&gt;Apr 7&lt;br&gt;Apr 9 | Intro to LLMs&lt;br&gt;Fine-Tuning&lt;br&gt;LLMs in Practice&lt;br&gt;LLMs in Practice | Lecture 21&lt;br&gt;Lecture 22&lt;br&gt;Lecture 23&lt;br&gt;Lecture 24 | | |</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>| **Software/Tools** | Apr 14 | Writing Your Own Software Package | Lecture 25 | | |</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>| **In-Class Project**&lt;br&gt;**Meetings** | Apr 16 | In-Class Project Meetings | | |</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>| **Software/Tools** | Apr 21 | GitHub Flow | Lecture 26 | | |</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>| **Final Project**&lt;br&gt;**Presentations** | Apr 23&lt;br&gt;Apr 28 | Final Project Presentations&lt;br&gt;Final Project Presentations | | |</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Final Project {.unnumbered}</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Checkpoint 1 due Mar 6 6pm ET</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Checkpoint 2 due Apr 3 6pm ET</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Checkpoint 3 due Apr 17 6pm ET</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Final project due May 7 6pm ET</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
