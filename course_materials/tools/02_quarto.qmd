@@ -37,6 +37,8 @@ format: html
 ---
 ```
 
+*Note:* In order to preview or render a quarto document with R code, you need to have `rmarkdown` installed in your active R environment (via `install.packages("rmarkdown")`).
+
 #### Python {.unnumbered}
 
 Example YAML front matter:
@@ -49,6 +51,9 @@ format: html
 jupyter: python3
 ---
 ```
+
+*Note:* In order to preview or render a quarto document with `jupyter: python3`, you need to have Jupyter/JupyterLab installed in your active Python environment.
+For example, if you are using `conda`, you should run `conda install jupyter` before rendering the document.
 :::
 
 In this example, the YAML front matter specifies the title, author, date, and output format (HTML) of the document. You can change the output format to PDF, Word, and many other supported formats. For more details, see the [Quarto Reference](https://quarto.org/docs/reference/) page.
@@ -273,7 +278,16 @@ Some additional quarto-specific features for enhancing your documents include:
 
 ## Rendering Quarto Documents
 
-To render a quarto document into the desired output format (e.g., HTML, PDF, Word), you can use the following methods:
+Before rendering quarto documents, you must have the following packages installed in your active R/Python environment:
+
+- When using **R** only: `rmarkdown`
+  - Install via `install.packages("rmarkdown")` in your R console
+- When using **Python** only (with `jupyter: python3` in YAML front matter): `jupyter`
+  - Install via `conda install jupyter` in your terminal
+- When using **R** and **Python** together: `rmarkdown` and `reticulate`
+  - Install via `install.packages("rmarkdown")` and `install.packages("reticulate")` in your R console
+
+Now to render a quarto document into the desired output format (e.g., HTML, PDF, Word), you can use one of the following methods:
 
 1.  **Command Line**:
 
@@ -285,9 +299,7 @@ To render a quarto document into the desired output format (e.g., HTML, PDF, Wor
 
 2.  **RStudio/Positron**:
 
-    If you are using RStudio or Positron, you can click the "Preview" or "Render" button at the top of the editor window when you have your `.qmd` file open.
-
-This will generate the output file in the same directory as your `.qmd` file.
+    If you are using Positron (or RStudio or VS Code), you can click the "Preview" or "Render" button at the top of the editor window when you have your `.qmd` file open.
 
 ## Additional Resources
 For more information on using quarto, check out the following resources:

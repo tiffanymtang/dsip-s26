@@ -293,10 +293,11 @@ git push
 
 ------------------------------------------------------------------------
 
-Lastly, please add `tiffanymtang` as a collaborator in your `dsip` repository (so that I can view your lab submissions). To do this, please:
+Lastly, please add `tiffanymtang` and `caiyufei8` as a collaborator in your `dsip` repository so that I and the grader can view your lab submissions. To do this, please:
 
 1.  Go to your `dsip` repository on GitHub: [https://github.com/{your_github_username}/dsip](https://github.com/\%7Byour_github_username\%7D/dsip){.uri}
 2.  Go to Settings (on the top) \> Collaborators (on the left) \> Add people (the green button) \> Enter `tiffanymtang` \> Click on "Add tiffanymtang to this repository".
+3.  Repeat the same process to add `caiyufei8` as a collaborator.
 
 ## Git Cheat Sheet
 
