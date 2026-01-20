@@ -1,0 +1,11 @@
+name: dsip_lab1
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - numpy
+  - pandas
+  - statsmodels
+  - conda-lock
+  - jupyterlab
+prefix: /opt/anaconda3/envs/dsip_lab1
