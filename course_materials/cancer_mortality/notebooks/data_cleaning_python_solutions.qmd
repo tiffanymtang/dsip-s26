@@ -1,0 +1,131 @@
+---
+title: "Cancer Mortality"
+author: Prof. Tang
+date: today
+format: 
+  html:
+    code-fold: show
+    code-summary: "Show Code"
+    code-tools: true
+    theme: sandstone
+    lightbox: true
+    embed-resources: true
+toc: true
+execute: 
+  warning: false
+  message: false
+jupyter: python3
+---
+
+```{python setup}
+from os.path import join as oj
+import pandas as pd
+```
+
+## Load in Cancer Mortality Data
+
+In this analysis, let's explore a cancer mortality dataset collected by the National Cancer Institute (NCI) and the Centers for Disease Control and Prevention (CDC). The dataset contains information on cancer mortality rates and various demographic, socioeconomic, and health-related factors for different U.S. counties. 
+
+```{python}
+DATA_DIR = oj("..", "data")
+cancer_orig = pd.read_csv(
+  oj(DATA_DIR, "cancer_mortality.csv"), encoding="ISO-8859-1"
+)
+```
+
+For simplicity, let's also focus our exploration on a smaller subset of variables:
+
+- `TARGET_deathRate`: Dependent variable of interest. Cancer mortality rate per 100,000 people.
+- `Geography`: Name of the county and state.
+- `incidenceRate`: Cancer diagnosis (incidence) rate per 100,000 people.
+- `popEst2015`: Estimated population in 2015.
+- `BirthRate`: Number of live births relative to number of women in county.
+- `medIncome`: Median household income.
+- `povertyPercent`: Percentage of populace below the poverty line.
+- `studyPerCap`: Number of cancer-related clinical trials per capita.
+- `MedianAge`: Median age of the population.
+- `MedianAgeMale`: Median male age of the population.
+- `MedianAgeFemale`: Median female age of the population.
+- `AvgHouseholdSize`: Average household size.
+- `PercentMarried`: Percentage of residents who are married.
+- `PctEmployed16_Over`: Percentage of residents ages 16 and over who are employed.
+- `PctUnemployed16_Over`: Percentage of residents ages 16 and over who are unemployed.
+- `PctWhite`: Percentage of residents who identify as White.
+- `PctBlack`: Percentage of residents who identify as Black.
+- `PctAsian`: Percentage of residents who identify as Asian.
+- `PctOtherRace`: Percentage of residents who identify in a category which is not White, Black, or Asian.
+
+```{python}
+keep_vars = [
+  "TARGET_deathRate", 
+  "Geography", "incidenceRate", "popEst2015", "BirthRate",
+  "medIncome", "povertyPercent", "studyPerCap", 
+  "MedianAge", "MedianAgeMale", "MedianAgeFemale", 
+  "AvgHouseholdSize", "PercentMarried",
+  "PctEmployed16_Over", "PctUnemployed16_Over",
+  "PctWhite", "PctBlack", "PctAsian", "PctOtherRace"
+]
+cancer_orig = cancer_orig[keep_vars]
+```
+
+Let's take a quick look at the first few rows of the data:
+
+```{python}
+# turn data frame into a tibble for prettier printing
+cancer_orig.head()
+```
+
+We can also get additional information about the data structure using the `info()`, `describe()`, and `dtypes` methods:
+
+```{python}
+cancer_orig.info()
+```
+
+```{python}
+cancer_orig.describe()
+```
+
+```{python}
+cancer_orig.dtypes
+```
+
+Next, checking for missing values per column:
+
+```{python}
+cancer_orig.isnull().sum()
+```
+
+Some observations based upon this summary:
+
+-   There is one qualitative variable (i.e., `Geography`).
+-   There is one variable (i.e., `PctEmployed16_Over`) with missing values.
+    -   How can we deal with such missingness? Options include:
+        (i) Impute missing values using mean, median, mode, or other imputation methods.
+        (ii) Remove observations (i.e., rows) with too many missing values.
+        (iii) Remove variables (i.e., columns) with too many missing values. *We will do this since `PctEmployed16_Over` is likely redundant given `PctUnemployed16_Over`.*
+-   There are most likely measurement errors in the `MedianAge` variable because its maximum value is 624. We will need to address this during our "data cleaning" step.
+
+## Data Cleaning
+
+We will next perform some data cleaning steps to prepare the data for analysis. Specifically, we will
+
+-   Deal with missing values by removing variables/columns with missing values. We chose this approach since there is only one variable with missing values and it is likely redundant given that we have `PctUnemployed16_Over`.
+-   Remove counties with `MedianAge` greater than 100. These values are clearly measurement errors since median age is likely to be less than 100 in all U.S. counties.
+
+Other data cleaning steps could also be taken, but we will keep it simple for this example.
+
+```{python}
+# get names of variables/columns with missing values
+na_vars = cancer_orig.columns[cancer_orig.isnull().any()].tolist()
+# remove variables/columns with missing values
+cancer_cleaned = cancer_orig.drop(columns=na_vars)
+
+cancer_cleaned = cancer_cleaned[cancer_cleaned['MedianAge'] <= 100]
+cancer_cleaned = cancer_cleaned.set_index('Geography')
+```
+
+Let's take a look at the cleaned data:
+
+```{python}
+cancer_cleaned.head()
+```

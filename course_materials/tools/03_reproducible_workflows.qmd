@@ -1,0 +1,255 @@
+---
+title: "Reproducible Workflows"
+format: html
+---
+
+## Overview of Reproducible Workflows
+
+In this walkthrough, we will discuss three important components to ensuring reproducible data science workflows:
+
+1.  Organizing your project files in a clear and consistent manner
+2.  Creating reproducible environments to manage package dependencies
+    -   Using `renv` (for R users) and `conda` (for Python users)
+3.  Using reproducible reporting tools such as quarto to combine combine code, results, and narrative text
+
+## A Suggested Project Structure
+
+A clear and consistent project structure is essential to keeping organized and facilitating reproducible data science workflows. While there is no one-size-fits-all solution for organizing your project files, the following structure is a suggested starting point and one that we will be using throughout this course.
+
+```         
+├── data         # store all raw and processed data
+├── notebooks    # store all notebooks (.qmd, .Rmd, .ipynb, ...)
+├── other        # miscellaneous documents
+├── R            # store R functions (ONLY functions)
+├── python       # store python functions (ONLY functions)
+├── scripts      # store R/python scripts (i.e., non-functions)
+├── results      # store all results
+├── renv         # do not edit; created automatically by renv (R only)
+.Rprofile        # do not edit; created automatically by renv (R only)
+renv.lock        # do not edit; created automatically by renv (R only)
+environment.yml  # yml file to reproduce conda environment (python only)
+conda-lock.yml   # lock file to reproduce conda environment (python only)
+```
+
+## Reproducible Environments
+
+Next, to manage package dependencies and ensure that your code can be run on different computers with the same package versions, we will create reproducible environments using `renv` (for R users) and `conda` (for Python users).
+
+**Before proceeding, please ensure that you have pulled the latest version of the `dsip-s26` repository to your computer.**
+
+For this walkthrough, we will be using the files provided in the `dsip-s26/course_materials/cancer_mortality` directory of the `dsip-s26` repository. To follow along, please make a copy of the `dsip-s26/course_materials/cancer_mortality` directory and place it in your `dsip/` directory.
+
+### How to Create a Reproducible Environment
+
+![](../../_site/images/renv_conda.png){fig-align="center" width=80%}
+
+We detail each of these steps below.
+
+::: panel-tabset
+
+#### `renv` (R users)
+
+0.  **Install renv** (only need to run once): If you haven't already, install the `renv` R package by running the following command in your R console:
+
+    ``` r
+    install.packages("renv")
+    ```
+
+1.  **Navigate to your project root directory**:
+
+    -   If you are using Positron, open your `dsip/cancer_mortality/` (or `dsip/lab1`) directory.
+    -   If you are using RStudio, set the working directory to your `dsip/cancer_mortality/` (or `dsip/lab1`) directory.
+
+2.  **Initialize renv**: In the R console, run the following command to initialize an `renv` for your project:
+
+    ``` r
+    renv::init()
+    ```
+
+    > Since we already have R code in our project (see `notebooks/data_cleaning_R.qmd`), `renv` will do its best to automatically detect and install the packages that are being used in your project. If you want to start with a clean slate (i.e., no packages installed), you can run `renv::init(bare = TRUE)` instead.
+
+    ::: {.callout-note title="renv Files" collapse="true"}
+    When you initialize `renv`, this will create several new files/directories: `renv.lock`, `.Rprofile` (a hidden file), and `renv/` in your current working directory. The `renv/` directory contains symbolic links to all of the packages needed/used in your project. \[Rather than installing a new copy of the package for every `renv` that you might create, `renv` uses symbolic links that point to your main R package library to save on storage\]. The `renv.lock` file (also called the "lockfile") contains all of the necessary package information to exactly reproduce your R environment on a different computer. Finally, the `.Rprofile` file contains code that is automatically run every time you open R from this working directory; in this case, it contains code to automatically activate your `renv` when you open your project from this directory.
+    :::
+
+3.  **Adding packages**: As you work on your lab, you will need to install new packages. To install/use these packages in your `renv`, you can do so with `renv::install(package_name)`. For example, to render a quarto document, we will need to install the `rmarkdown` package, which can be done by running the following command in your R console:
+
+    ``` r
+    renv::install("rmarkdown")
+    ```
+
+4.  **Snapshot your environment**: After you have installed the necessary packages for your lab, you need to "snapshot" your environment, that is, to record the latest package information in your `renv.lock` lockfile. To do this, run the following command in your R console:
+
+    ``` r
+    renv::snapshot()
+    ```
+
+    > To see which packages are being used in your project but not yet installed or snapshotted in the lock file, you can run the following command in your R console: `renv::status()`.
+
+5.  **Check your lockfile**: You can open the `renv.lock` file in a text editor to see the package information that has been recorded for your project. This file contains all of the necessary information to exactly reproduce your R environment on a different computer.
+
+
+#### `conda` (Python users)
+
+0.  **Install conda-lock** (only need to run once): If you haven't already, install the `conda-lock` package by running the following command in your terminal:
+
+    ``` bash
+    conda install --name=base conda-lock
+    ```
+
+1.  **Navigate to your project root directory**: in your terminal, change your working directory to `dsip/cancer_mortality/` (or `dsip/lab1`), e.g.,
+
+    ``` bash
+    cd path/to/dsip/cancer_mortality
+    ```
+
+2.  **Initialize a new conda environment**: To create a new conda environment, run the following command in your terminal. You can replace `dsip_cancer` with the name of your choice for the environment, and you can specify a specific version of Python if desired (e.g., `python=3.12.2`): 
+
+    ``` bash
+    conda create --name dsip_cancer
+    ```
+
+    or with a specific version of Python:
+
+    ``` bash
+    conda create --name dsip_cancer python=3.12.2
+    ```
+
+3.  **Activate the conda environment**: To activate the conda environment, run the following command in your terminal:
+
+    ``` bash
+    conda activate dsip_cancer
+    ```
+
+    ::: {.callout-note title="conda init Error" collapse="true"}
+    If you run into an error when trying to activate the conda environment, you may need to run the following command to initialize conda in your shell: `conda init` (or or `conda init zsh` if you are using zsh).
+    :::
+
+4.  **Adding packages**: You can add and install new packages in your conda environment using the `conda install` command. For example, the starter python code in `dsip/notebooks/data_cleaning_python.qmd` uses the `pandas` package. We will also need to install the `jupyterlab` package to render quarto notebooks in python. To install these packages, you can run the following command in your terminal:
+
+    ``` bash
+    conda install pandas jupyterlab
+    ```
+    
+    > To see which packages are installed in your conda environment, you can run the following command in your terminal: `conda list`.
+
+5.  **Export environment**: After you have installed the necessary packages for your lab, you should export your conda environment to a YAML file. This YAML file contains a list of the packages that were installed in your conda environment. To do this, run the following command in your terminal:
+
+    ``` bash
+    conda env export --from-history > environment.yml
+    ```
+    
+    > Note: the `--from-history` flag will only list/export the packages that you have explicitly installed in your environment (i.e., it will not include packages that were installed as dependencies of other packages). Be sure to include the `--from-history` flag when exporting your environment to ensure that you have a minimal environment file. If you exclude the `--from-history` flag, you will get a full list of all packages in your environment, including dependencies which may be specific to your operating system and will not be portable to other operating systems.
+
+6.  **Create and check conda lock file**: While the above `environment.yml` file is great for sharing your environment with others, it does not provide instructions to *exactly* reproduce your environment across different operating system platforms. To enable exact reproducibility of our conda environment, we need to create a lock file (as we did with `renv`). To create a lock file for your conda environment, you can run the following command in your terminal:
+
+    ``` bash
+    conda lock
+    ```
+
+:::
+
+### How to Restore Environment from Lock File
+
+Given an appropriate lock file, you can easily reproduce your exact R or Python environment on a different computer by following the instructions below.
+
+::: panel-tabset
+
+#### `renv` (R users)
+
+0.  Clone your `dsip` repository, and install `renv` via `install.packages("renv")` in your R console if you haven't already.
+1.  **Navigate to your project root directory**:
+    -  If you are using Positron, open your `dsip/lab1/` directory.
+    -  If you are using RStudio, set the working directory to your `dsip/lab1/` directory.
+2.  **Restore your environment**: To restore your R environment to the exact state that it was in when you last worked on it, you can run the following command in your R console:
+    
+    ``` r
+    renv::restore()
+    ```
+
+#### `conda` (Python users)
+
+0.  Clone your `dsip` repository, and install `conda-lock` via `conda install --name=base conda-lock` in your terminal if you haven't already.
+1.  **Navigate to your project root directory**: Open your terminal and navigate to your `dsip/lab1/` directory, e.g.,
+
+    ``` bash
+    cd path/to/dsip/lab1
+    ```
+
+2.  **Restore your environment**: To restore your Python environment using the conda-lock file, you can run the following command in your terminal:
+
+    ``` bash
+    conda-lock install --name dsip_lab1
+    ```
+
+:::
+
+## Reproducible Reporting with Quarto
+
+As discussed in a different [tutorial](02_quarto.html), **quarto** is a powerful tool for creating reproducible reports that combine code, results, and narrative text. Using quarto in conjunction with reproducible environments will ensure that your reports can be easily reproduced on different computers with the same package versions.
+
+*Note:* If you are using quarto in Positron or VS Code, I would highly recommend installing the quarto extension for your IDE to make working with quarto documents much easier. To open the Extensions view, you can click on the square icon on the left side or press `Ctrl+Shift+X` (`Cmd+Shift+X` on Mac). Then, search for "Quarto" and click on the install button. (This step only needs to be done once.)
+
+Now to render a quarto document within a reproducible environment:
+
+::: panel-tabset
+
+#### R
+
+0.  Make sure that `rmarkdown` is installed in your `renv`. If not, you can install it via `renv::install("rmarkdown")` in your R console. (Remember to snapshot your environment again via `renv::snapshot()` after installing new packages.)
+
+1.  In your terminal, navigate to your project root directory (e.g., `dsip/cancer_mortality/` or `dsip/lab1/`).
+
+2.  Render the quarto document using `quarto render` or `quarto preview` in your terminal, e.g.,
+
+    ``` bash
+    quarto render "notebooks/data_cleaning_R.qmd"
+    ```
+
+    or 
+
+    ``` bash
+    quarto preview "notebooks/data_cleaning_R.qmd"
+    ```
+
+    ::: {.callout-warning title="Quarto Preview Button" collapse="true"}
+    I generally do not recommend using the "Preview" button in Positron to render quarto documents when working within `renv` environments.
+
+    *Why?* This "Preview" button is known to have issues with rendering quarto documents within `renv` environments. In particular, if your `.qmd` file is not in the same directory as your `renv` (e.g., if your `.qmd` file is in a subdirectory such as `notebooks/` like we have done here), the "Preview" button will render your quarto document using your global R environment rather than your project-specific `renv` environment. If you are using the "Preview" button to quickly see your changes, this is ok as long as you are aware of this behavior. However, if you want to check whether or not your quarto document renders correctly within your `renv` environment, you should always use the terminal commands shown above to render/preview your quarto document.
+    :::
+
+
+#### Python
+
+0.  Make sure that `jupyterlab` is installed in your `conda` environment. If not, you can install it by activating your desired environment (`conda activate <env_name>`) and then running `conda install jupyterlab` in your terminal. (Remember to export your environment again via `conda env export --from-history > environment.yml` and update your lock file via `conda lock` after installing new packages.)
+
+    ::: {.callout-note title="VS Code Users" collapse="true"}
+    If you are using VS Code, you may also need to install the `ipykernel` package in your conda environment to render quarto documents. You can do this by running `conda install ipykernel` in your terminal after activating your desired conda environment.
+    :::
+
+1.  In your terminal, navigate to your project root directory (e.g., `dsip/cancer_mortality/` or `dsip/lab1/`).
+
+2.  Render the quarto document using `quarto render` or `quarto preview` in your terminal, e.g.,
+
+    ``` bash
+    quarto render "notebooks/data_cleaning_python.qmd"
+    ```
+
+    or
+
+    ``` bash
+    quarto preview "notebooks/data_cleaning_python.qmd"
+    ```
+
+    ::: {.callout-note title="Quarto Preview Button" collapse="true"}
+    If you are using Positron or VS Code with the quarto extension, you can also use the "Preview" button at the top of the quarto document to render the document. However, you MUST first tell Positron/VS Code which conda environment to use for the quarto document. To do this, open the Command Palette by pressing `Ctrl+Shift+P` (`Cmd+Shift+P` on Mac) and then search for “Python: Select Interpreter”. You can then choose your desired conda environment that you created for lab 1.
+
+    If you do not see your conda environment in the list, you can manually "enter interpreter path" and enter the path to the conda environment (i.e., the path shown next to your desired environment when you run `conda env list` in your terminal).
+    :::
+
+:::
+
+## Additional Resources
+
+-  [Getting Started with renv](https://rstudio.github.io/renv/articles/renv.html)
+-  [conda Cheat Sheet](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf)

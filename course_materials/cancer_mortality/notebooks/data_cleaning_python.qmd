@@ -1,0 +1,87 @@
+---
+title: "Cancer Mortality"
+author: Prof. Tang
+date: today
+format: 
+  html:
+    code-fold: show
+    code-summary: "Show Code"
+    code-tools: true
+    theme: sandstone
+    lightbox: true
+    embed-resources: true
+toc: true
+execute: 
+  warning: false
+  message: false
+jupyter: python3
+---
+
+```{python setup}
+from os.path import join as oj
+import pandas as pd
+```
+
+## Load in Cancer Mortality Data
+
+In this analysis, let's explore a cancer mortality dataset collected by the National Cancer Institute (NCI) and the Centers for Disease Control and Prevention (CDC). The dataset contains information on cancer mortality rates and various demographic, socioeconomic, and health-related factors for different U.S. counties. 
+
+```{python}
+DATA_DIR = oj("..", "data")
+cancer_orig = pd.read_csv(
+  oj(DATA_DIR, "cancer_mortality.csv"), encoding="ISO-8859-1"
+)
+```
+
+For simplicity, let's also focus our exploration on a smaller subset of variables:
+
+- `TARGET_deathRate`: Dependent variable of interest. Cancer mortality rate per 100,000 people.
+- `Geography`: Name of the county and state.
+- `incidenceRate`: Cancer diagnosis (incidence) rate per 100,000 people.
+- `popEst2015`: Estimated population in 2015.
+- `BirthRate`: Number of live births relative to number of women in county.
+- `medIncome`: Median household income.
+- `povertyPercent`: Percentage of populace below the poverty line.
+- `studyPerCap`: Number of cancer-related clinical trials per capita.
+- `MedianAge`: Median age of the population.
+- `MedianAgeMale`: Median male age of the population.
+- `MedianAgeFemale`: Median female age of the population.
+- `AvgHouseholdSize`: Average household size.
+- `PercentMarried`: Percentage of residents who are married.
+- `PctEmployed16_Over`: Percentage of residents ages 16 and over who are employed.
+- `PctUnemployed16_Over`: Percentage of residents ages 16 and over who are unemployed.
+- `PctWhite`: Percentage of residents who identify as White.
+- `PctBlack`: Percentage of residents who identify as Black.
+- `PctAsian`: Percentage of residents who identify as Asian.
+- `PctOtherRace`: Percentage of residents who identify in a category which is not White, Black, or Asian.
+
+```{python}
+keep_vars = [
+  "TARGET_deathRate", 
+  "Geography", "incidenceRate", "popEst2015", "BirthRate",
+  "medIncome", "povertyPercent", "studyPerCap", 
+  "MedianAge", "MedianAgeMale", "MedianAgeFemale", 
+  "AvgHouseholdSize", "PercentMarried",
+  "PctEmployed16_Over", "PctUnemployed16_Over",
+  "PctWhite", "PctBlack", "PctAsian", "PctOtherRace"
+]
+cancer_orig = cancer_orig[keep_vars]
+```
+
+## Data Cleaning
+
+This dataset contains a variety of issues that we need to address before we can perform any meaningful analysis. 
+
+**Task 1:** Can you find any oddities in the data and clean them up? 
+
+Here are some hints to get you started:
+
+1. **Missing Values**: Check for missing values in the dataset and decide how to handle them (e.g., imputation, removal).
+2. **Outliers**: Identify any outliers in the numerical variables that may skew the analysis and consider how to address them.
+3. **Data Types**: Ensure that each variable has the appropriate data type (e.g., numeric, categorical).
+4. **Inconsistent Entries**: Look for any inconsistent or erroneous entries in categorical variables (e.g., misspellings, different formats) and standardize them.
+5. **Feature Engineering**: Consider creating new variables that may be useful for later analysis (more on this in later parts of the course).
+
+*Note:* This dataset might not have all of these issues, but in general, it's a good exercise to check for such issues.
+
+**Task 2:** Keeping in the spirit of reproducibility, record your data cleaning steps so that someone else can exactly replicate your work just by reading your written text. Also justify your data cleaning decisions so that others can critically assess whether they want to follow your data cleaning approach or take a different approach.
