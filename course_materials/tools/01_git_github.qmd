@@ -299,6 +299,40 @@ Lastly, please add `tiffanymtang` and `caiyufei8` as a collaborator in your `dsi
 2.  Go to Settings (on the top) \> Collaborators (on the left) \> Add people (the green button) \> Enter `tiffanymtang` \> Click on "Add tiffanymtang to this repository".
 3.  Repeat the same process to add `caiyufei8` as a collaborator.
 
+## .gitignore
+
+As you begin working on your labs and final project, you will likely generate some files that you do not want to track with git (e.g., data files, temporary files, compiled files, etc.). For example, the `.DS_Store` file is a hidden "junk" file that is created by macOS and should not be tracked. Python also generates `__pycache__` folders when compiling code, and Jupyter notebooks generate `.ipynb_checkpoints` folders when running notebooks. These files/folders are not necessary to track and will just clutter your repository.
+
+We can instruct git to ignore these files by creating a `.gitignore` file in our repository. This file contains a list of files and directories that we want git to ignore and never track.
+
+If you followed the R parts of this walkthrough, then a `.gitignore` file has already been created automatically (by `renv`). To find this file in your file manager, you will need to show hidden files (i.e., any files that start with `.`). To reveal hidden files in your file manager, you can press `Ctrl+Shift+.` (or `Cmd+Shift+.` on Mac). If a `.gitignore` has not yet been created, you can create one manually by opening your favorite text editor and saving an empty file with the name `.gitignore`.
+
+To add the `.DS_Store` file to the `.gitignore` file, you can open the `.gitignore` file in your text editor and add the following line:
+``` raw
+*.DS_Store
+```
+
+> Note: the `*` is a wildcard character that matches any sequence of characters. So `*.DS_Store` will match any file that ends with `.DS_Store`, and thus, adding the above line to your `.gitignore` will tell git to ignore all files that end in the extension `.DS_Store`.
+
+Some other files/folders that you should add to your `.gitignore` file include:
+``` raw
+*/data/*
+*__pycache__*
+*.ipynb_checkpoints*
+```
+
+It is generally best practice to avoid pushing large data files to GitHub repositories; hence, here we are ignoring all files in any `data/` folder. **Avoid uploading the datasets to GitHub for your labs!**
+
+> For reference, GitHub has a file size limit of 100 MB per file. Large files close to this limit can dramatically slow down the performance of your repository. If you exceed this limit, bad things usually happen (e.g., losing lots of work, being unable to push new changes, etc).
+
+After these changes, your `.gitignore` file should look something like this:
+
+![](../../_site/images/gitignore.png){fig-align="center"}
+
+Please save these changes to your `.gitignore` file. After saving these changes, you can check the status of your repository again to see that many of the files that you previously saw (e.g., .DS_Store, the data files, ...) are no longer being tracked by git. 
+
+Take one last moment to review all of the files remaining in your `git status` (or GitHub Desktop/GitKraken status view) are files that you'd like to commit and push to your GitHub repository. If you are satisfied with the files that you see, you can now proceed through the usual GitHub workflow of pulling, adding, committing, and pushing your changes to your GitHub repository.
+
 ## Git Cheat Sheet
 
 For a quick reference guide to common git/GitHub commands, please refer to this [GitHub Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf).

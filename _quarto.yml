@@ -11,6 +11,7 @@ project:
     - course_materials/tools/00_installation.qmd
     - course_materials/tools/01_git_github.qmd
     - course_materials/tools/02_quarto.qmd
+    - course_materials/tools/03_reproducible_workflows.qmd
 
 website:
   page-navigation: true
@@ -25,6 +26,8 @@ website:
         text: 1 Git and GitHub
       - href: course_materials/tools/02_quarto.qmd
         text: 2 Quarto
+      - href: course_materials/tools/03_reproducible_workflows.qmd
+        text: 3 Reproducible Workflows
 
 format:
   html:
