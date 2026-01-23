@@ -1,0 +1,132 @@
+---
+title: "Cancer Mortality"
+author: Prof. Tang
+date: today
+format: 
+  html:
+    code-fold: show
+    code-summary: "Show Code"
+    code-tools: true
+    theme: sandstone
+    lightbox: true
+    embed-resources: true
+toc: true
+execute: 
+  warning: false
+  message: false
+---
+
+```{r setup}
+# specify where this file is located relative to the project root; 
+# see ? here::i_am for details
+here::i_am("notebooks/data_cleaning_R.qmd")
+# specify data directory relative to project root
+DATA_DIR <- here::here("data")  
+# set random seed for reproducibility
+set.seed(123)
+```
+
+## Load in Cancer Mortality Data
+
+In this analysis, let's explore a cancer mortality dataset collected by the National Cancer Institute (NCI) and the Centers for Disease Control and Prevention (CDC). The dataset contains information on cancer mortality rates and various demographic, socioeconomic, and health-related factors for different U.S. counties. 
+
+```{r}
+cancer_orig <- data.table::fread(
+  file.path(DATA_DIR, "cancer_mortality.csv"),
+  data.table = FALSE
+)
+```
+
+For simplicity, let's also focus our exploration on a smaller subset of variables:
+
+- `TARGET_deathRate`: Dependent variable of interest. Cancer mortality rate per 100,000 people.
+- `Geography`: Name of the county and state.
+- `incidenceRate`: Cancer diagnosis (incidence) rate per 100,000 people.
+- `popEst2015`: Estimated population in 2015.
+- `BirthRate`: Number of live births relative to number of women in county.
+- `medIncome`: Median household income.
+- `povertyPercent`: Percentage of populace below the poverty line.
+- `studyPerCap`: Number of cancer-related clinical trials per capita.
+- `MedianAge`: Median age of the population.
+- `MedianAgeMale`: Median male age of the population.
+- `MedianAgeFemale`: Median female age of the population.
+- `AvgHouseholdSize`: Average household size.
+- `PercentMarried`: Percentage of residents who are married.
+- `PctEmployed16_Over`: Percentage of residents ages 16 and over who are employed.
+- `PctUnemployed16_Over`: Percentage of residents ages 16 and over who are unemployed.
+- `PctWhite`: Percentage of residents who identify as White.
+- `PctBlack`: Percentage of residents who identify as Black.
+- `PctAsian`: Percentage of residents who identify as Asian.
+- `PctOtherRace`: Percentage of residents who identify in a category which is not White, Black, or Asian.
+
+```{r}
+keep_vars <- c(
+  "TARGET_deathRate", 
+  "Geography", "incidenceRate", "popEst2015", "BirthRate",
+  "medIncome", "povertyPercent", "studyPerCap", 
+  "MedianAge", "MedianAgeMale", "MedianAgeFemale", 
+  "AvgHouseholdSize", "PercentMarried",
+  "PctEmployed16_Over", "PctUnemployed16_Over",
+  "PctWhite", "PctBlack", "PctAsian", "PctOtherRace"
+)
+cancer_orig <- cancer_orig[, keep_vars]
+```
+
+Let's take a quick look at the first few rows of the data:
+
+```{r}
+# turn data frame into a tibble for prettier printing
+head(tibble::as_tibble(cancer_orig))
+```
+
+We can also get a summary of the data structure using `str()`:
+
+```{r}
+str(cancer_orig)
+```
+
+Another helpful function is `View()`. We will skip this here, but I would encourage you to try `View(cancer_orig)` in your own R environment to get a spreadsheet-like view of the data.
+
+An even more detailed summary can be obtained using the `skimr` package:
+
+```{r}
+skimr::skim(cancer_orig)
+```
+
+Some observations based upon this summary:
+
+-   There is one qualitative variable (i.e., `Geography`).
+-   There is one variable (i.e., `PctEmployed16_Over`) with missing values.
+    -   How can we deal with such missingness? Options include:
+        (i) Impute missing values using mean, median, mode, or other imputation methods.
+        (ii) Remove observations (i.e., rows) with too many missing values.
+        (iii) Remove variables (i.e., columns) with too many missing values. *We will do this since `PctEmployed16_Over` is likely redundant given `PctUnemployed16_Over`.*
+-   There are most likely measurement errors in the `MedianAge` variable because its maximum value is 624. We will need to address this during our "data cleaning" step.
+
+## Data Cleaning
+
+We will next perform some data cleaning steps to prepare the data for analysis. Specifically, we will
+
+-   Deal with missing values by removing variables/columns with missing values. We chose this approach since there is only one variable with missing values and it is likely redundant given that we have `PctUnemployed16_Over`.
+-   Remove counties with `MedianAge` greater than 100. These values are clearly measurement errors since median age is likely to be less than 100 in all U.S. counties.
+
+Other data cleaning steps could also be taken, but we will keep it simple for this example.
+
+```{r}
+# get names of variables/columns with missing values
+na_vars <- names(which(apply(cancer_orig, 2, function(x) any(is.na(x)))))
+# remove variables/columns with missing values
+cancer_cleaned <- cancer_orig[, !(names(cancer_orig) %in% na_vars)]
+
+cancer_cleaned <- cancer_cleaned |> 
+  # remove counties with MedianAge greater than 100
+  dplyr::filter(MedianAge <= 100) |> 
+  # move Geography to row names and remove Geography column
+  tibble::column_to_rownames(var = "Geography")
+```
+
+Let's take a look at the cleaned data:
+
+```{r}
+skimr::skim(cancer_cleaned)
+```
