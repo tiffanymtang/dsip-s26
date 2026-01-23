@@ -4876,6 +4876,8 @@ text-align: center !important;
   <li><a href="#how-to-restore-environment-from-lock-file" id="toc-how-to-restore-environment-from-lock-file" class="nav-link" data-scroll-target="#how-to-restore-environment-from-lock-file">How to Restore Environment from Lock File</a></li>
   </ul></li>
   <li><a href="#reproducible-reporting-with-quarto" id="toc-reproducible-reporting-with-quarto" class="nav-link" data-scroll-target="#reproducible-reporting-with-quarto">Reproducible Reporting with Quarto</a></li>
+  <li><a href="#checking-reproducibility" id="toc-checking-reproducibility" class="nav-link" data-scroll-target="#checking-reproducibility">Checking Reproducibility</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a></li>
   <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
   </ul>
 </nav>
@@ -4953,7 +4955,7 @@ conda-lock.yml   # lock file to reproduce conda environment (python only)</code>
 <li><p><strong>Navigate to your project root directory</strong>:</p>
 <ul>
 <li>If you are using Positron, open your <code>dsip/cancer_mortality/</code> (or <code>dsip/lab1</code>) directory.</li>
-<li>If you are using RStudio, set the working directory to your <code>dsip/cancer_mortality/</code> (or <code>dsip/lab1</code>) directory.</li>
+<li>If you are using RStudio, create a new R project in your <code>dsip/cancer_mortality/</code> (or <code>dsip/lab1</code>) directory. To do this, click on File &gt; New Project &gt; Existing Directory &gt; navigate to your <code>dsip/cancer_mortality/</code> (or <code>dsip/lab1</code>) directory. This will create a <code>*.Rproj</code> file in your project root directory.</li>
 </ul></li>
 <li><p><strong>Initialize renv</strong>: In the R console, run the following command to initialize an <code>renv</code> for your project:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4987,6 +4989,23 @@ renv Files
 </ol>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="callout callout-style-default callout-warning callout-titled" title="Windows Users">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Windows Users
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If you are on a Windows computer and getting a <code>conda command not found</code> error, you must use the <code>Anaconda Prompt</code> (not the regular Command Prompt or PowerShell) to run the conda commands below. You can find the Anaconda Prompt by searching for it in the Start Menu.</p>
+<p>If you want to integrate conda with PowerShell, you can try following the instructions <a href="https://www.codegenes.net/blog/how-can-i-activate-a-conda-environment-from-powershell/">here</a>.</p>
+</div>
+</div>
+</div>
 <ol start="0" type="1">
 <li><p><strong>Install conda-lock</strong> (only need to run once): If you haven’t already, install the <code>conda-lock</code> package by running the following command in your terminal:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">--name</span><span class="op">=</span>base conda-lock</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
@@ -4999,7 +5018,7 @@ renv Files
 <li><p><strong>Activate the conda environment</strong>: To activate the conda environment, run the following command in your terminal:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate dsip_cancer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled" title="conda init Error">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5008,7 +5027,7 @@ conda init Error
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>If you run into an error when trying to activate the conda environment, you may need to run the following command to initialize conda in your shell: <code>conda init</code> (or or <code>conda init zsh</code> if you are using zsh).</p>
 </div>
@@ -5027,6 +5046,26 @@ conda init Error
 <li><p><strong>Create and check conda lock file</strong>: While the above <code>environment.yml</code> file is great for sharing your environment with others, it does not provide instructions to <em>exactly</em> reproduce your environment across different operating system platforms. To enable exact reproducibility of our conda environment, we need to create a lock file (as we did with <code>renv</code>). To create a lock file for your conda environment, you can run the following command in your terminal:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> lock</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
+<div class="callout callout-style-default callout-note callout-titled" title="Including pip installed dependencies">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Including pip installed dependencies
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If you used pip to install some packages in your conda environment, you can include these pip-installed dependencies in your conda lock file by following the steps below:</p>
+<ol type="1">
+<li><p>First, add these pip-installed packages to your <code>environment.yml</code> file. The easiest way to do this is to first run <code>conda env export</code>. This will output something like <code>raw     ...     dependencies:       - conda_installed_packages       - pip:         - pip_installed_package_1         - pip_installed_package_2</code> Copy and paste the <code>pip:</code> section into your existing <code>environment.yml</code> file (which was created by <code>conda env export --from-history &gt; environment.yml</code>). Be sure to follow the same formatting and indentation as what was outputted by <code>conda env export</code>.</p></li>
+<li><p>Next, create the conda lock file as usual by running <code>conda lock</code>.</p></li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -5043,7 +5082,7 @@ conda init Error
 <li><p><strong>Navigate to your project root directory</strong>:</p>
 <ul>
 <li>If you are using Positron, open your <code>dsip/lab1/</code> directory.</li>
-<li>If you are using RStudio, set the working directory to your <code>dsip/lab1/</code> directory.</li>
+<li>If you are using RStudio, open your <code>*.Rproj</code> project file in your <code>dsip/lab1/</code> directory.</li>
 </ul></li>
 <li><p><strong>Restore your environment</strong>: To restore your R environment to the exact state that it was in when you last worked on it, you can run the following command in your R console:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
@@ -5068,7 +5107,7 @@ conda init Error
 <p><em>Note:</em> If you are using quarto in Positron or VS Code, I would highly recommend installing the quarto extension for your IDE to make working with quarto documents much easier. To open the Extensions view, you can click on the square icon on the left side or press <code>Ctrl+Shift+X</code> (<code>Cmd+Shift+X</code> on Mac). Then, search for “Quarto” and click on the install button. (This step only needs to be done once.)</p>
 <p>Now to render a quarto document within a reproducible environment:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Python</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R (VS Code/Positron)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">R (RStudio)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <ol start="0" type="1">
@@ -5079,49 +5118,6 @@ conda init Error
 <p>or</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview <span class="st">&quot;notebooks/data_cleaning_R.qmd&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled" title="Quarto Preview Button">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Quarto Preview Button
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>I generally do not recommend using the “Preview” button in Positron to render quarto documents when working within <code>renv</code> environments.</p>
-<p><em>Why?</em> This “Preview” button is known to have issues with rendering quarto documents within <code>renv</code> environments. In particular, if your <code>.qmd</code> file is not in the same directory as your <code>renv</code> (e.g., if your <code>.qmd</code> file is in a subdirectory such as <code>notebooks/</code> like we have done here), the “Preview” button will render your quarto document using your global R environment rather than your project-specific <code>renv</code> environment. If you are using the “Preview” button to quickly see your changes, this is ok as long as you are aware of this behavior. However, if you want to check whether or not your quarto document renders correctly within your <code>renv</code> environment, you should always use the terminal commands shown above to render/preview your quarto document.</p>
-</div>
-</div>
-</div></li>
-</ol>
-</div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<ol start="0" type="1">
-<li><p>Make sure that <code>jupyterlab</code> is installed in your <code>conda</code> environment. If not, you can install it by activating your desired environment (<code>conda activate &lt;env_name&gt;</code>) and then running <code>conda install jupyterlab</code> in your terminal. (Remember to export your environment again via <code>conda env export --from-history &gt; environment.yml</code> and update your lock file via <code>conda lock</code> after installing new packages.)</p>
-<div class="callout callout-style-default callout-note callout-titled" title="VS Code Users">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-VS Code Users
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>If you are using VS Code, you may also need to install the <code>ipykernel</code> package in your conda environment to render quarto documents. You can do this by running <code>conda install ipykernel</code> in your terminal after activating your desired conda environment.</p>
-</div>
-</div>
-</div></li>
-<li><p>In your terminal, navigate to your project root directory (e.g., <code>dsip/cancer_mortality/</code> or <code>dsip/lab1/</code>).</p></li>
-<li><p>Render the quarto document using <code>quarto render</code> or <code>quarto preview</code> in your terminal, e.g.,</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render <span class="st">&quot;notebooks/data_cleaning_python.qmd&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>or</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview <span class="st">&quot;notebooks/data_cleaning_python.qmd&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-note callout-titled" title="Quarto Preview Button">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -5133,6 +5129,56 @@ Quarto Preview Button
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p>I generally do not recommend using the “Preview” button in Positron to render quarto documents when working within <code>renv</code> environments.</p>
+<p><em>Why?</em> This “Preview” button is known to have issues with rendering quarto documents within <code>renv</code> environments. In particular, if your <code>.qmd</code> file is not in the same directory as your <code>renv</code> (e.g., if your <code>.qmd</code> file is in a subdirectory such as <code>notebooks/</code> like we have done here), the “Preview” button will render your quarto document using your global R environment rather than your project-specific <code>renv</code> environment. If you are using the “Preview” button to quickly see your changes, this is ok as long as you are aware of this behavior. However, if you want to check whether or not your quarto document renders correctly within your <code>renv</code> environment, you should always use the terminal commands shown above to render/preview your quarto document.</p>
+</div>
+</div>
+</div></li>
+</ol>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<ol start="0" type="1">
+<li><p>Make sure that <code>rmarkdown</code> is installed in your <code>renv</code>. If not, you can install it via <code>renv::install(&quot;rmarkdown&quot;)</code> in your R console. (Remember to snapshot your environment again via <code>renv::snapshot()</code> after installing new packages.)</p></li>
+<li><p>In RStudio, open your <code>*.Rproj</code> project file in your <code>dsip/cancer_mortality/</code> (or <code>dsip/lab1/</code>) directory. If you successfully opened the project, you should see the name of the project (e.g., <code>cancer_mortality</code> or <code>lab1</code>) in the top right corner of your RStudio window.</p></li>
+<li><p>Open the quarto document and render it by clicking on the <code>&quot;Render&quot;</code> button at the top of the quarto document.</p></li>
+</ol>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<ol start="0" type="1">
+<li><p>Make sure that <code>jupyterlab</code> is installed in your <code>conda</code> environment. If not, you can install it by activating your desired environment (<code>conda activate &lt;env_name&gt;</code>) and then running <code>conda install jupyterlab</code> in your terminal. (Remember to export your environment again via <code>conda env export --from-history &gt; environment.yml</code> and update your lock file via <code>conda lock</code> after installing new packages.)</p>
+<div class="callout callout-style-default callout-note callout-titled" title="VS Code Users">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+VS Code Users
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If you are using VS Code, you may also need to install the <code>ipykernel</code> package in your conda environment to render quarto documents. You can do this by running <code>conda install ipykernel</code> in your terminal after activating your desired conda environment.</p>
+</div>
+</div>
+</div></li>
+<li><p>In your terminal, navigate to your project root directory (e.g., <code>dsip/cancer_mortality/</code> or <code>dsip/lab1/</code>).</p></li>
+<li><p>Render the quarto document using <code>quarto render</code> or <code>quarto preview</code> in your terminal, e.g.,</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render <span class="st">&quot;notebooks/data_cleaning_python.qmd&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview <span class="st">&quot;notebooks/data_cleaning_python.qmd&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Quarto Preview Button">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Quarto Preview Button
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>If you are using Positron or VS Code with the quarto extension, you can also use the “Preview” button at the top of the quarto document to render the document. However, you MUST first tell Positron/VS Code which conda environment to use for the quarto document. To do this, open the Command Palette by pressing <code>Ctrl+Shift+P</code> (<code>Cmd+Shift+P</code> on Mac) and then search for “Python: Select Interpreter”. You can then choose your desired conda environment that you created for lab 1.</p>
 <p>If you do not see your conda environment in the list, you can manually “enter interpreter path” and enter the path to the conda environment (i.e., the path shown next to your desired environment when you run <code>conda env list</code> in your terminal).</p>
 </div>
@@ -5142,6 +5188,65 @@ Quarto Preview Button
 </div>
 </div>
 </div>
+</section>
+<section id="checking-reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="checking-reproducibility">Checking Reproducibility</h2>
+<p>If you would like to check whether or not your project report is fully reproducible, you can try the following steps:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<ol type="1">
+<li><p>Delete the <code>renv/library/</code> and <code>renv/staging/</code> directories in your project root directory (e.g., <code>dsip/lab1/</code>).</p></li>
+<li><p>For Positron and VS Code users, open your project root directory (e.g., <code>dsip/lab1/</code>) in your IDE. For RStudio users, open your <code>*.Rproj</code> project file in your project root directory (e.g., <code>dsip/lab1/</code>).</p></li>
+<li><p>Try restoring your environment by running the following command in your R console:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Render your quarto document by running the following command in your terminal, e.g.,</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render <span class="st">&quot;notebooks/lab1.qmd&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the document renders successfully without any errors, then your project is fully reproducible!</p></li>
+</ol>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<ol type="1">
+<li><p>In your terminal, navigate to your project root directory (e.g., <code>dsip/lab1/</code>).</p></li>
+<li><p>Create a new conda environment from your lock file by running the following command in your terminal:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda-lock</span> install <span class="at">--name</span> <span class="op">&lt;</span>temp_env<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Note:</em> if the <code>conda-lock</code> command is not found, make sure you are using the <code>base</code> conda environment (or whatever conda environment you installed <code>conda-lock</code> in) by running <code>conda activate base</code> (or <code>conda activate &lt;env_name&gt;</code>).</p></li>
+<li><p>Render your quarto document using the new conda environment by running the following command in your terminal:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate <span class="op">&lt;</span>temp_env<span class="op">&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render <span class="st">&quot;notebooks/lab1.qmd&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the document renders successfully without any errors, then your project is fully reproducible!</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="File Paths and External Files">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+File Paths and External Files
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><em>Important Note:</em> When checking reproducibility, make sure that your code does not rely on any absolute file paths (i.e., file paths that are specific to your computer). Instead, use relative file paths that are relative to your project root directory. Additionally, make sure that any external files (e.g., results files or other data files beyond the original data provided to you) that your code relies on have been made available on GitHub.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li><p>If you encounter are trying to render a quarto document and get an error that the <code>yaml</code> package is not found, you may need to install the <code>jupyterlab</code> package in your conda environment. You can do this by activating your desired conda environment (<code>conda activate &lt;env_name&gt;</code>) and then running <code>conda install jupyterlab</code> in your terminal. For VS Code users, you may also need to install the <code>ipykernel</code> package in your conda environment by running <code>conda install ipykernel</code> in your terminal after activating your desired conda environment.</p></li>
+<li><p>If <code>conda-lock</code> cannot be installed in your base conda environment, this is likely because of version conflicts with other packages in your base environment. To get around this, you can create a temporary conda environment to install <code>conda-lock</code> and use it to create lock files for your other conda environments. To do this, run the following commands in your terminal:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> temp_conda_lock python=3.12.2</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate temp_conda_lock</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install conda-lock</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can then use this temporary environment to create lock files for your other conda environments by navigating to the appropriate project root directory and running <code>conda-lock install --name &lt;env_name&gt;</code> as usual.</p></li>
+</ul>
 </section>
 <section id="additional-resources" class="level2">
 <h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
@@ -5636,264 +5741,365 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-next">
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb21" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Reproducible Workflows&quot;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview of Reproducible Workflows</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>In this walkthrough, we will discuss three important components to ensuring reproducible data science workflows:</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Organizing your project files in a clear and consistent manner</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Creating reproducible environments to manage package dependencies</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Using <span class="in">`renv`</span> (for R users) and <span class="in">`conda`</span> (for Python users)</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Using reproducible reporting tools such as quarto to combine combine code, results, and narrative text</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## A Suggested Project Structure</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>A clear and consistent project structure is essential to keeping organized and facilitating reproducible data science workflows. While there is no one-size-fits-all solution for organizing your project files, the following structure is a suggested starting point and one that we will be using throughout this course.</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="in">├── data         # store all raw and processed data</span></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="in">├── notebooks    # store all notebooks (.qmd, .Rmd, .ipynb, ...)</span></span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="in">├── other        # miscellaneous documents</span></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="in">├── R            # store R functions (ONLY functions)</span></span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="in">├── python       # store python functions (ONLY functions)</span></span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="in">├── scripts      # store R/python scripts (i.e., non-functions)</span></span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="in">├── results      # store all results</span></span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a><span class="in">├── renv         # do not edit; created automatically by renv (R only)</span></span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="in">.Rprofile        # do not edit; created automatically by renv (R only)</span></span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="in">renv.lock        # do not edit; created automatically by renv (R only)</span></span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="in">environment.yml  # yml file to reproduce conda environment (python only)</span></span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="in">conda-lock.yml   # lock file to reproduce conda environment (python only)</span></span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproducible Environments</span></span>
-<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>Next, to manage package dependencies and ensure that your code can be run on different computers with the same package versions, we will create reproducible environments using <span class="in">`renv`</span> (for R users) and <span class="in">`conda`</span> (for Python users).</span>
-<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>**Before proceeding, please ensure that you have pulled the latest version of the `dsip-s26` repository to your computer.**</span>
-<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>For this walkthrough, we will be using the files provided in the <span class="in">`dsip-s26/course_materials/cancer_mortality`</span> directory of the <span class="in">`dsip-s26`</span> repository. To follow along, please make a copy of the <span class="in">`dsip-s26/course_materials/cancer_mortality`</span> directory and place it in your <span class="in">`dsip/`</span> directory.</span>
-<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a><span class="fu">### How to Create a Reproducible Environment</span></span>
-<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a><span class="al">![](../../_site/images/renv_conda.png)</span>{fig-align=&quot;center&quot; width=80%}</span>
-<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>We detail each of these steps below.</span>
-<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
-<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a><span class="fu">#### `renv` (R users)</span></span>
-<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a><span class="ss">0.  </span>**Install renv** (only need to run once): If you haven&#39;t already, install the <span class="in">`renv`</span> R package by running the following command in your R console:</span>
-<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` r</span></span>
-<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;renv&quot;</span>)</span>
-<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Navigate to your project root directory**:</span>
-<span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-60"><a href="#cb21-60" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>If you are using Positron, open your <span class="in">`dsip/cancer_mortality/`</span> (or <span class="in">`dsip/lab1`</span>) directory.</span>
-<span id="cb21-61"><a href="#cb21-61" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>If you are using RStudio, set the working directory to your <span class="in">`dsip/cancer_mortality/`</span> (or <span class="in">`dsip/lab1`</span>) directory.</span>
-<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-63"><a href="#cb21-63" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Initialize renv**: In the R console, run the following command to initialize an <span class="in">`renv`</span> for your project:</span>
-<span id="cb21-64"><a href="#cb21-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-65"><a href="#cb21-65" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` r</span></span>
-<span id="cb21-66"><a href="#cb21-66" aria-hidden="true" tabindex="-1"></a>    renv<span class="sc">::</span><span class="fu">init</span>()</span>
-<span id="cb21-67"><a href="#cb21-67" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-68"><a href="#cb21-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-69"><a href="#cb21-69" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; Since we already have R code in our project (see </span><span class="in">`notebooks/data_cleaning_R.qmd`</span><span class="at">), </span><span class="in">`renv`</span><span class="at"> will do its best to automatically detect and install the packages that are being used in your project. If you want to start with a clean slate (i.e., no packages installed), you can run </span><span class="in">`renv::init(bare = TRUE)`</span><span class="at"> instead.</span></span>
-<span id="cb21-70"><a href="#cb21-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-71"><a href="#cb21-71" aria-hidden="true" tabindex="-1"></a>    ::: {.callout-note title=&quot;renv Files&quot; collapse=&quot;true&quot;}</span>
-<span id="cb21-72"><a href="#cb21-72" aria-hidden="true" tabindex="-1"></a>    When you initialize <span class="in">`renv`</span>, this will create several new files/directories: <span class="in">`renv.lock`</span>, <span class="in">`.Rprofile`</span> (a hidden file), and <span class="in">`renv/`</span> in your current working directory. The <span class="in">`renv/`</span> directory contains symbolic links to all of the packages needed/used in your project. <span class="sc">\[</span>Rather than installing a new copy of the package for every <span class="in">`renv`</span> that you might create, <span class="in">`renv`</span> uses symbolic links that point to your main R package library to save on storage<span class="sc">\]</span>. The <span class="in">`renv.lock`</span> file (also called the &quot;lockfile&quot;) contains all of the necessary package information to exactly reproduce your R environment on a different computer. Finally, the <span class="in">`.Rprofile`</span> file contains code that is automatically run every time you open R from this working directory; in this case, it contains code to automatically activate your <span class="in">`renv`</span> when you open your project from this directory.</span>
-<span id="cb21-73"><a href="#cb21-73" aria-hidden="true" tabindex="-1"></a>    :::</span>
-<span id="cb21-74"><a href="#cb21-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-75"><a href="#cb21-75" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Adding packages**: As you work on your lab, you will need to install new packages. To install/use these packages in your <span class="in">`renv`</span>, you can do so with <span class="in">`renv::install(package_name)`</span>. For example, to render a quarto document, we will need to install the <span class="in">`rmarkdown`</span> package, which can be done by running the following command in your R console:</span>
-<span id="cb21-76"><a href="#cb21-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-77"><a href="#cb21-77" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` r</span></span>
-<span id="cb21-78"><a href="#cb21-78" aria-hidden="true" tabindex="-1"></a>    renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;rmarkdown&quot;</span>)</span>
-<span id="cb21-79"><a href="#cb21-79" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-80"><a href="#cb21-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-81"><a href="#cb21-81" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Snapshot your environment**: After you have installed the necessary packages for your lab, you need to &quot;snapshot&quot; your environment, that is, to record the latest package information in your <span class="in">`renv.lock`</span> lockfile. To do this, run the following command in your R console:</span>
-<span id="cb21-82"><a href="#cb21-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-83"><a href="#cb21-83" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` r</span></span>
-<span id="cb21-84"><a href="#cb21-84" aria-hidden="true" tabindex="-1"></a>    renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
-<span id="cb21-85"><a href="#cb21-85" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-86"><a href="#cb21-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-87"><a href="#cb21-87" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; To see which packages are being used in your project but not yet installed or snapshotted in the lock file, you can run the following command in your R console: </span><span class="in">`renv::status()`</span><span class="at">.</span></span>
-<span id="cb21-88"><a href="#cb21-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-89"><a href="#cb21-89" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Check your lockfile**: You can open the <span class="in">`renv.lock`</span> file in a text editor to see the package information that has been recorded for your project. This file contains all of the necessary information to exactly reproduce your R environment on a different computer.</span>
-<span id="cb21-90"><a href="#cb21-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-91"><a href="#cb21-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-92"><a href="#cb21-92" aria-hidden="true" tabindex="-1"></a><span class="fu">#### `conda` (Python users)</span></span>
-<span id="cb21-93"><a href="#cb21-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-94"><a href="#cb21-94" aria-hidden="true" tabindex="-1"></a><span class="ss">0.  </span>**Install conda-lock** (only need to run once): If you haven&#39;t already, install the <span class="in">`conda-lock`</span> package by running the following command in your terminal:</span>
-<span id="cb21-95"><a href="#cb21-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-96"><a href="#cb21-96" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
-<span id="cb21-97"><a href="#cb21-97" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> install <span class="at">--name</span><span class="op">=</span>base conda-lock</span>
-<span id="cb21-98"><a href="#cb21-98" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-99"><a href="#cb21-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-100"><a href="#cb21-100" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Navigate to your project root directory**: in your terminal, change your working directory to <span class="in">`dsip/cancer_mortality/`</span> (or <span class="in">`dsip/lab1`</span>), e.g.,</span>
-<span id="cb21-101"><a href="#cb21-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-102"><a href="#cb21-102" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
-<span id="cb21-103"><a href="#cb21-103" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> path/to/dsip/cancer_mortality</span>
-<span id="cb21-104"><a href="#cb21-104" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-105"><a href="#cb21-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-106"><a href="#cb21-106" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Initialize a new conda environment**: To create a new conda environment, run the following command in your terminal. You can replace <span class="in">`dsip_cancer`</span> with the name of your choice for the environment, and you can specify a specific version of Python if desired (e.g., <span class="in">`python=3.12.2`</span>): </span>
-<span id="cb21-107"><a href="#cb21-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-108"><a href="#cb21-108" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
-<span id="cb21-109"><a href="#cb21-109" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> create <span class="at">--name</span> dsip_cancer</span>
-<span id="cb21-110"><a href="#cb21-110" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-111"><a href="#cb21-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-112"><a href="#cb21-112" aria-hidden="true" tabindex="-1"></a>    or with a specific version of Python:</span>
-<span id="cb21-113"><a href="#cb21-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-114"><a href="#cb21-114" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
-<span id="cb21-115"><a href="#cb21-115" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> create <span class="at">--name</span> dsip_cancer python=3.12.2</span>
-<span id="cb21-116"><a href="#cb21-116" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-117"><a href="#cb21-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-118"><a href="#cb21-118" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Activate the conda environment**: To activate the conda environment, run the following command in your terminal:</span>
-<span id="cb21-119"><a href="#cb21-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-120"><a href="#cb21-120" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
-<span id="cb21-121"><a href="#cb21-121" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> activate dsip_cancer</span>
-<span id="cb21-122"><a href="#cb21-122" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-123"><a href="#cb21-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-124"><a href="#cb21-124" aria-hidden="true" tabindex="-1"></a>    ::: {.callout-note title=&quot;conda init Error&quot; collapse=&quot;true&quot;}</span>
-<span id="cb21-125"><a href="#cb21-125" aria-hidden="true" tabindex="-1"></a>    If you run into an error when trying to activate the conda environment, you may need to run the following command to initialize conda in your shell: <span class="in">`conda init`</span> (or or <span class="in">`conda init zsh`</span> if you are using zsh).</span>
-<span id="cb21-126"><a href="#cb21-126" aria-hidden="true" tabindex="-1"></a>    :::</span>
-<span id="cb21-127"><a href="#cb21-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-128"><a href="#cb21-128" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Adding packages**: You can add and install new packages in your conda environment using the <span class="in">`conda install`</span> command. For example, the starter python code in <span class="in">`dsip/notebooks/data_cleaning_python.qmd`</span> uses the <span class="in">`pandas`</span> package. We will also need to install the <span class="in">`jupyterlab`</span> package to render quarto notebooks in python. To install these packages, you can run the following command in your terminal:</span>
-<span id="cb21-129"><a href="#cb21-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-130"><a href="#cb21-130" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
-<span id="cb21-131"><a href="#cb21-131" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> install pandas jupyterlab</span>
-<span id="cb21-132"><a href="#cb21-132" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-133"><a href="#cb21-133" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb21-134"><a href="#cb21-134" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; To see which packages are installed in your conda environment, you can run the following command in your terminal: </span><span class="in">`conda list`</span><span class="at">.</span></span>
-<span id="cb21-135"><a href="#cb21-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-136"><a href="#cb21-136" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Export environment**: After you have installed the necessary packages for your lab, you should export your conda environment to a YAML file. This YAML file contains a list of the packages that were installed in your conda environment. To do this, run the following command in your terminal:</span>
-<span id="cb21-137"><a href="#cb21-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-138"><a href="#cb21-138" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
-<span id="cb21-139"><a href="#cb21-139" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> env export <span class="at">--from-history</span> <span class="op">&gt;</span> environment.yml</span>
-<span id="cb21-140"><a href="#cb21-140" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-141"><a href="#cb21-141" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb21-142"><a href="#cb21-142" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; Note: the </span><span class="in">`--from-history`</span><span class="at"> flag will only list/export the packages that you have explicitly installed in your environment (i.e., it will not include packages that were installed as dependencies of other packages). Be sure to include the </span><span class="in">`--from-history`</span><span class="at"> flag when exporting your environment to ensure that you have a minimal environment file. If you exclude the </span><span class="in">`--from-history`</span><span class="at"> flag, you will get a full list of all packages in your environment, including dependencies which may be specific to your operating system and will not be portable to other operating systems.</span></span>
-<span id="cb21-143"><a href="#cb21-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-144"><a href="#cb21-144" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>**Create and check conda lock file**: While the above <span class="in">`environment.yml`</span> file is great for sharing your environment with others, it does not provide instructions to *exactly* reproduce your environment across different operating system platforms. To enable exact reproducibility of our conda environment, we need to create a lock file (as we did with <span class="in">`renv`</span>). To create a lock file for your conda environment, you can run the following command in your terminal:</span>
-<span id="cb21-145"><a href="#cb21-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-146"><a href="#cb21-146" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
-<span id="cb21-147"><a href="#cb21-147" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> lock</span>
-<span id="cb21-148"><a href="#cb21-148" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-149"><a href="#cb21-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-150"><a href="#cb21-150" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb21-151"><a href="#cb21-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-152"><a href="#cb21-152" aria-hidden="true" tabindex="-1"></a><span class="fu">### How to Restore Environment from Lock File</span></span>
-<span id="cb21-153"><a href="#cb21-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-154"><a href="#cb21-154" aria-hidden="true" tabindex="-1"></a>Given an appropriate lock file, you can easily reproduce your exact R or Python environment on a different computer by following the instructions below.</span>
-<span id="cb21-155"><a href="#cb21-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-156"><a href="#cb21-156" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
-<span id="cb21-157"><a href="#cb21-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-158"><a href="#cb21-158" aria-hidden="true" tabindex="-1"></a><span class="fu">#### `renv` (R users)</span></span>
-<span id="cb21-159"><a href="#cb21-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-160"><a href="#cb21-160" aria-hidden="true" tabindex="-1"></a><span class="ss">0.  </span>Clone your <span class="in">`dsip`</span> repository, and install <span class="in">`renv`</span> via <span class="in">`install.packages(&quot;renv&quot;)`</span> in your R console if you haven&#39;t already.</span>
-<span id="cb21-161"><a href="#cb21-161" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Navigate to your project root directory**:</span>
-<span id="cb21-162"><a href="#cb21-162" aria-hidden="true" tabindex="-1"></a><span class="ss">    -  </span>If you are using Positron, open your <span class="in">`dsip/lab1/`</span> directory.</span>
-<span id="cb21-163"><a href="#cb21-163" aria-hidden="true" tabindex="-1"></a><span class="ss">    -  </span>If you are using RStudio, set the working directory to your <span class="in">`dsip/lab1/`</span> directory.</span>
-<span id="cb21-164"><a href="#cb21-164" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Restore your environment**: To restore your R environment to the exact state that it was in when you last worked on it, you can run the following command in your R console:</span>
-<span id="cb21-165"><a href="#cb21-165" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb21-166"><a href="#cb21-166" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` r</span></span>
-<span id="cb21-167"><a href="#cb21-167" aria-hidden="true" tabindex="-1"></a>    renv<span class="sc">::</span><span class="fu">restore</span>()</span>
-<span id="cb21-168"><a href="#cb21-168" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-169"><a href="#cb21-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-170"><a href="#cb21-170" aria-hidden="true" tabindex="-1"></a><span class="fu">#### `conda` (Python users)</span></span>
-<span id="cb21-171"><a href="#cb21-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-172"><a href="#cb21-172" aria-hidden="true" tabindex="-1"></a><span class="ss">0.  </span>Clone your <span class="in">`dsip`</span> repository, and install <span class="in">`conda-lock`</span> via <span class="in">`conda install --name=base conda-lock`</span> in your terminal if you haven&#39;t already.</span>
-<span id="cb21-173"><a href="#cb21-173" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Navigate to your project root directory**: Open your terminal and navigate to your <span class="in">`dsip/lab1/`</span> directory, e.g.,</span>
-<span id="cb21-174"><a href="#cb21-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-175"><a href="#cb21-175" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
-<span id="cb21-176"><a href="#cb21-176" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> path/to/dsip/lab1</span>
-<span id="cb21-177"><a href="#cb21-177" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-178"><a href="#cb21-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-179"><a href="#cb21-179" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Restore your environment**: To restore your Python environment using the conda-lock file, you can run the following command in your terminal:</span>
-<span id="cb21-180"><a href="#cb21-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-181"><a href="#cb21-181" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
-<span id="cb21-182"><a href="#cb21-182" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda-lock</span> install <span class="at">--name</span> dsip_lab1</span>
-<span id="cb21-183"><a href="#cb21-183" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-184"><a href="#cb21-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-185"><a href="#cb21-185" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb21-186"><a href="#cb21-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-187"><a href="#cb21-187" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproducible Reporting with Quarto</span></span>
-<span id="cb21-188"><a href="#cb21-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-189"><a href="#cb21-189" aria-hidden="true" tabindex="-1"></a>As discussed in a different <span class="co">[</span><span class="ot">tutorial</span><span class="co">](02_quarto.html)</span>, **quarto** is a powerful tool for creating reproducible reports that combine code, results, and narrative text. Using quarto in conjunction with reproducible environments will ensure that your reports can be easily reproduced on different computers with the same package versions.</span>
-<span id="cb21-190"><a href="#cb21-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-191"><a href="#cb21-191" aria-hidden="true" tabindex="-1"></a>*Note:* If you are using quarto in Positron or VS Code, I would highly recommend installing the quarto extension for your IDE to make working with quarto documents much easier. To open the Extensions view, you can click on the square icon on the left side or press <span class="in">`Ctrl+Shift+X`</span> (<span class="in">`Cmd+Shift+X`</span> on Mac). Then, search for &quot;Quarto&quot; and click on the install button. (This step only needs to be done once.)</span>
-<span id="cb21-192"><a href="#cb21-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-193"><a href="#cb21-193" aria-hidden="true" tabindex="-1"></a>Now to render a quarto document within a reproducible environment:</span>
-<span id="cb21-194"><a href="#cb21-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-195"><a href="#cb21-195" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
-<span id="cb21-196"><a href="#cb21-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-197"><a href="#cb21-197" aria-hidden="true" tabindex="-1"></a><span class="fu">#### R</span></span>
-<span id="cb21-198"><a href="#cb21-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-199"><a href="#cb21-199" aria-hidden="true" tabindex="-1"></a><span class="ss">0.  </span>Make sure that <span class="in">`rmarkdown`</span> is installed in your <span class="in">`renv`</span>. If not, you can install it via <span class="in">`renv::install(&quot;rmarkdown&quot;)`</span> in your R console. (Remember to snapshot your environment again via <span class="in">`renv::snapshot()`</span> after installing new packages.)</span>
-<span id="cb21-200"><a href="#cb21-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-201"><a href="#cb21-201" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>In your terminal, navigate to your project root directory (e.g., <span class="in">`dsip/cancer_mortality/`</span> or <span class="in">`dsip/lab1/`</span>).</span>
-<span id="cb21-202"><a href="#cb21-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-203"><a href="#cb21-203" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Render the quarto document using <span class="in">`quarto render`</span> or <span class="in">`quarto preview`</span> in your terminal, e.g.,</span>
-<span id="cb21-204"><a href="#cb21-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-205"><a href="#cb21-205" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
-<span id="cb21-206"><a href="#cb21-206" aria-hidden="true" tabindex="-1"></a>    <span class="ex">quarto</span> render <span class="st">&quot;notebooks/data_cleaning_R.qmd&quot;</span></span>
-<span id="cb21-207"><a href="#cb21-207" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-208"><a href="#cb21-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-209"><a href="#cb21-209" aria-hidden="true" tabindex="-1"></a>    or </span>
-<span id="cb21-210"><a href="#cb21-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-211"><a href="#cb21-211" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
-<span id="cb21-212"><a href="#cb21-212" aria-hidden="true" tabindex="-1"></a>    <span class="ex">quarto</span> preview <span class="st">&quot;notebooks/data_cleaning_R.qmd&quot;</span></span>
-<span id="cb21-213"><a href="#cb21-213" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-214"><a href="#cb21-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-215"><a href="#cb21-215" aria-hidden="true" tabindex="-1"></a>    ::: {.callout-warning title=&quot;Quarto Preview Button&quot; collapse=&quot;true&quot;}</span>
-<span id="cb21-216"><a href="#cb21-216" aria-hidden="true" tabindex="-1"></a>    I generally do not recommend using the &quot;Preview&quot; button in Positron to render quarto documents when working within <span class="in">`renv`</span> environments.</span>
-<span id="cb21-217"><a href="#cb21-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-218"><a href="#cb21-218" aria-hidden="true" tabindex="-1"></a>    *Why?* This &quot;Preview&quot; button is known to have issues with rendering quarto documents within <span class="in">`renv`</span> environments. In particular, if your <span class="in">`.qmd`</span> file is not in the same directory as your <span class="in">`renv`</span> (e.g., if your <span class="in">`.qmd`</span> file is in a subdirectory such as <span class="in">`notebooks/`</span> like we have done here), the &quot;Preview&quot; button will render your quarto document using your global R environment rather than your project-specific <span class="in">`renv`</span> environment. If you are using the &quot;Preview&quot; button to quickly see your changes, this is ok as long as you are aware of this behavior. However, if you want to check whether or not your quarto document renders correctly within your <span class="in">`renv`</span> environment, you should always use the terminal commands shown above to render/preview your quarto document.</span>
-<span id="cb21-219"><a href="#cb21-219" aria-hidden="true" tabindex="-1"></a>    :::</span>
-<span id="cb21-220"><a href="#cb21-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-221"><a href="#cb21-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-222"><a href="#cb21-222" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Python</span></span>
-<span id="cb21-223"><a href="#cb21-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-224"><a href="#cb21-224" aria-hidden="true" tabindex="-1"></a><span class="ss">0.  </span>Make sure that <span class="in">`jupyterlab`</span> is installed in your <span class="in">`conda`</span> environment. If not, you can install it by activating your desired environment (<span class="in">`conda activate &lt;env_name&gt;`</span>) and then running <span class="in">`conda install jupyterlab`</span> in your terminal. (Remember to export your environment again via <span class="in">`conda env export --from-history &gt; environment.yml`</span> and update your lock file via <span class="in">`conda lock`</span> after installing new packages.)</span>
-<span id="cb21-225"><a href="#cb21-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-226"><a href="#cb21-226" aria-hidden="true" tabindex="-1"></a>    ::: {.callout-note title=&quot;VS Code Users&quot; collapse=&quot;true&quot;}</span>
-<span id="cb21-227"><a href="#cb21-227" aria-hidden="true" tabindex="-1"></a>    If you are using VS Code, you may also need to install the <span class="in">`ipykernel`</span> package in your conda environment to render quarto documents. You can do this by running <span class="in">`conda install ipykernel`</span> in your terminal after activating your desired conda environment.</span>
-<span id="cb21-228"><a href="#cb21-228" aria-hidden="true" tabindex="-1"></a>    :::</span>
-<span id="cb21-229"><a href="#cb21-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-230"><a href="#cb21-230" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>In your terminal, navigate to your project root directory (e.g., <span class="in">`dsip/cancer_mortality/`</span> or <span class="in">`dsip/lab1/`</span>).</span>
-<span id="cb21-231"><a href="#cb21-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-232"><a href="#cb21-232" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Render the quarto document using <span class="in">`quarto render`</span> or <span class="in">`quarto preview`</span> in your terminal, e.g.,</span>
-<span id="cb21-233"><a href="#cb21-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-234"><a href="#cb21-234" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
-<span id="cb21-235"><a href="#cb21-235" aria-hidden="true" tabindex="-1"></a>    <span class="ex">quarto</span> render <span class="st">&quot;notebooks/data_cleaning_python.qmd&quot;</span></span>
-<span id="cb21-236"><a href="#cb21-236" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-237"><a href="#cb21-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-238"><a href="#cb21-238" aria-hidden="true" tabindex="-1"></a>    or</span>
-<span id="cb21-239"><a href="#cb21-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-240"><a href="#cb21-240" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
-<span id="cb21-241"><a href="#cb21-241" aria-hidden="true" tabindex="-1"></a>    <span class="ex">quarto</span> preview <span class="st">&quot;notebooks/data_cleaning_python.qmd&quot;</span></span>
-<span id="cb21-242"><a href="#cb21-242" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb21-243"><a href="#cb21-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-244"><a href="#cb21-244" aria-hidden="true" tabindex="-1"></a>    ::: {.callout-note title=&quot;Quarto Preview Button&quot; collapse=&quot;true&quot;}</span>
-<span id="cb21-245"><a href="#cb21-245" aria-hidden="true" tabindex="-1"></a>    If you are using Positron or VS Code with the quarto extension, you can also use the &quot;Preview&quot; button at the top of the quarto document to render the document. However, you MUST first tell Positron/VS Code which conda environment to use for the quarto document. To do this, open the Command Palette by pressing <span class="in">`Ctrl+Shift+P`</span> (<span class="in">`Cmd+Shift+P`</span> on Mac) and then search for “Python: Select Interpreter”. You can then choose your desired conda environment that you created for lab 1.</span>
-<span id="cb21-246"><a href="#cb21-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-247"><a href="#cb21-247" aria-hidden="true" tabindex="-1"></a>    If you do not see your conda environment in the list, you can manually &quot;enter interpreter path&quot; and enter the path to the conda environment (i.e., the path shown next to your desired environment when you run <span class="in">`conda env list`</span> in your terminal).</span>
-<span id="cb21-248"><a href="#cb21-248" aria-hidden="true" tabindex="-1"></a>    :::</span>
-<span id="cb21-249"><a href="#cb21-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-250"><a href="#cb21-250" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb21-251"><a href="#cb21-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-252"><a href="#cb21-252" aria-hidden="true" tabindex="-1"></a><span class="fu">## Additional Resources</span></span>
-<span id="cb21-253"><a href="#cb21-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-254"><a href="#cb21-254" aria-hidden="true" tabindex="-1"></a><span class="ss">-  </span><span class="co">[</span><span class="ot">Getting Started with renv</span><span class="co">](https://rstudio.github.io/renv/articles/renv.html)</span></span>
-<span id="cb21-255"><a href="#cb21-255" aria-hidden="true" tabindex="-1"></a><span class="ss">-  </span><span class="co">[</span><span class="ot">conda Cheat Sheet</span><span class="co">](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf)</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Reproducible Workflows&quot;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview of Reproducible Workflows</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>In this walkthrough, we will discuss three important components to ensuring reproducible data science workflows:</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Organizing your project files in a clear and consistent manner</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Creating reproducible environments to manage package dependencies</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Using <span class="in">`renv`</span> (for R users) and <span class="in">`conda`</span> (for Python users)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Using reproducible reporting tools such as quarto to combine combine code, results, and narrative text</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## A Suggested Project Structure</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>A clear and consistent project structure is essential to keeping organized and facilitating reproducible data science workflows. While there is no one-size-fits-all solution for organizing your project files, the following structure is a suggested starting point and one that we will be using throughout this course.</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="in">├── data         # store all raw and processed data</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="in">├── notebooks    # store all notebooks (.qmd, .Rmd, .ipynb, ...)</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a><span class="in">├── other        # miscellaneous documents</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a><span class="in">├── R            # store R functions (ONLY functions)</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a><span class="in">├── python       # store python functions (ONLY functions)</span></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a><span class="in">├── scripts      # store R/python scripts (i.e., non-functions)</span></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a><span class="in">├── results      # store all results</span></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a><span class="in">├── renv         # do not edit; created automatically by renv (R only)</span></span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a><span class="in">.Rprofile        # do not edit; created automatically by renv (R only)</span></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a><span class="in">renv.lock        # do not edit; created automatically by renv (R only)</span></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a><span class="in">environment.yml  # yml file to reproduce conda environment (python only)</span></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a><span class="in">conda-lock.yml   # lock file to reproduce conda environment (python only)</span></span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproducible Environments</span></span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>Next, to manage package dependencies and ensure that your code can be run on different computers with the same package versions, we will create reproducible environments using <span class="in">`renv`</span> (for R users) and <span class="in">`conda`</span> (for Python users).</span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>**Before proceeding, please ensure that you have pulled the latest version of the `dsip-s26` repository to your computer.**</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>For this walkthrough, we will be using the files provided in the <span class="in">`dsip-s26/course_materials/cancer_mortality`</span> directory of the <span class="in">`dsip-s26`</span> repository. To follow along, please make a copy of the <span class="in">`dsip-s26/course_materials/cancer_mortality`</span> directory and place it in your <span class="in">`dsip/`</span> directory.</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a><span class="fu">### How to Create a Reproducible Environment</span></span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a><span class="al">![](../../_site/images/renv_conda.png)</span>{fig-align=&quot;center&quot; width=80%}</span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a>We detail each of these steps below.</span>
+<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a><span class="fu">#### `renv` (R users)</span></span>
+<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a><span class="ss">0.  </span>**Install renv** (only need to run once): If you haven&#39;t already, install the <span class="in">`renv`</span> R package by running the following command in your R console:</span>
+<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` r</span></span>
+<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;renv&quot;</span>)</span>
+<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Navigate to your project root directory**:</span>
+<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>If you are using Positron, open your <span class="in">`dsip/cancer_mortality/`</span> (or <span class="in">`dsip/lab1`</span>) directory.</span>
+<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>If you are using RStudio, create a new R project in your <span class="in">`dsip/cancer_mortality/`</span> (or <span class="in">`dsip/lab1`</span>) directory. To do this, click on File &gt; New Project &gt; Existing Directory &gt; navigate to your <span class="in">`dsip/cancer_mortality/`</span> (or <span class="in">`dsip/lab1`</span>) directory. This will create a <span class="in">`*.Rproj`</span> file in your project root directory.</span>
+<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Initialize renv**: In the R console, run the following command to initialize an <span class="in">`renv`</span> for your project:</span>
+<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` r</span></span>
+<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a>    renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-68"><a href="#cb26-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-69"><a href="#cb26-69" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; Since we already have R code in our project (see </span><span class="in">`notebooks/data_cleaning_R.qmd`</span><span class="at">), </span><span class="in">`renv`</span><span class="at"> will do its best to automatically detect and install the packages that are being used in your project. If you want to start with a clean slate (i.e., no packages installed), you can run </span><span class="in">`renv::init(bare = TRUE)`</span><span class="at"> instead.</span></span>
+<span id="cb26-70"><a href="#cb26-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-71"><a href="#cb26-71" aria-hidden="true" tabindex="-1"></a>    ::: {.callout-note title=&quot;renv Files&quot; collapse=&quot;true&quot;}</span>
+<span id="cb26-72"><a href="#cb26-72" aria-hidden="true" tabindex="-1"></a>    When you initialize <span class="in">`renv`</span>, this will create several new files/directories: <span class="in">`renv.lock`</span>, <span class="in">`.Rprofile`</span> (a hidden file), and <span class="in">`renv/`</span> in your current working directory. The <span class="in">`renv/`</span> directory contains symbolic links to all of the packages needed/used in your project. <span class="sc">\[</span>Rather than installing a new copy of the package for every <span class="in">`renv`</span> that you might create, <span class="in">`renv`</span> uses symbolic links that point to your main R package library to save on storage<span class="sc">\]</span>. The <span class="in">`renv.lock`</span> file (also called the &quot;lockfile&quot;) contains all of the necessary package information to exactly reproduce your R environment on a different computer. Finally, the <span class="in">`.Rprofile`</span> file contains code that is automatically run every time you open R from this working directory; in this case, it contains code to automatically activate your <span class="in">`renv`</span> when you open your project from this directory.</span>
+<span id="cb26-73"><a href="#cb26-73" aria-hidden="true" tabindex="-1"></a>    :::</span>
+<span id="cb26-74"><a href="#cb26-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-75"><a href="#cb26-75" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Adding packages**: As you work on your lab, you will need to install new packages. To install/use these packages in your <span class="in">`renv`</span>, you can do so with <span class="in">`renv::install(package_name)`</span>. For example, to render a quarto document, we will need to install the <span class="in">`rmarkdown`</span> package, which can be done by running the following command in your R console:</span>
+<span id="cb26-76"><a href="#cb26-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-77"><a href="#cb26-77" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` r</span></span>
+<span id="cb26-78"><a href="#cb26-78" aria-hidden="true" tabindex="-1"></a>    renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;rmarkdown&quot;</span>)</span>
+<span id="cb26-79"><a href="#cb26-79" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-80"><a href="#cb26-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-81"><a href="#cb26-81" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Snapshot your environment**: After you have installed the necessary packages for your lab, you need to &quot;snapshot&quot; your environment, that is, to record the latest package information in your <span class="in">`renv.lock`</span> lockfile. To do this, run the following command in your R console:</span>
+<span id="cb26-82"><a href="#cb26-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` r</span></span>
+<span id="cb26-84"><a href="#cb26-84" aria-hidden="true" tabindex="-1"></a>    renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
+<span id="cb26-85"><a href="#cb26-85" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-86"><a href="#cb26-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-87"><a href="#cb26-87" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; To see which packages are being used in your project but not yet installed or snapshotted in the lock file, you can run the following command in your R console: </span><span class="in">`renv::status()`</span><span class="at">.</span></span>
+<span id="cb26-88"><a href="#cb26-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-89"><a href="#cb26-89" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Check your lockfile**: You can open the <span class="in">`renv.lock`</span> file in a text editor to see the package information that has been recorded for your project. This file contains all of the necessary information to exactly reproduce your R environment on a different computer.</span>
+<span id="cb26-90"><a href="#cb26-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-91"><a href="#cb26-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-92"><a href="#cb26-92" aria-hidden="true" tabindex="-1"></a><span class="fu">#### `conda` (Python users)</span></span>
+<span id="cb26-93"><a href="#cb26-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-94"><a href="#cb26-94" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning title=&quot;Windows Users&quot; collapse=&quot;true&quot;}</span>
+<span id="cb26-95"><a href="#cb26-95" aria-hidden="true" tabindex="-1"></a>If you are on a Windows computer and getting a <span class="in">`conda command not found`</span> error, you must use the <span class="in">`Anaconda Prompt`</span> (not the regular Command Prompt or PowerShell) to run the conda commands below. You can find the Anaconda Prompt by searching for it in the Start Menu.</span>
+<span id="cb26-96"><a href="#cb26-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-97"><a href="#cb26-97" aria-hidden="true" tabindex="-1"></a>If you want to integrate conda with PowerShell, you can try following the instructions <span class="co">[</span><span class="ot">here</span><span class="co">](https://www.codegenes.net/blog/how-can-i-activate-a-conda-environment-from-powershell/)</span>.</span>
+<span id="cb26-98"><a href="#cb26-98" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-99"><a href="#cb26-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-100"><a href="#cb26-100" aria-hidden="true" tabindex="-1"></a><span class="ss">0.  </span>**Install conda-lock** (only need to run once): If you haven&#39;t already, install the <span class="in">`conda-lock`</span> package by running the following command in your terminal:</span>
+<span id="cb26-101"><a href="#cb26-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-102"><a href="#cb26-102" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-103"><a href="#cb26-103" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> install <span class="at">--name</span><span class="op">=</span>base conda-lock</span>
+<span id="cb26-104"><a href="#cb26-104" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-105"><a href="#cb26-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-106"><a href="#cb26-106" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Navigate to your project root directory**: in your terminal, change your working directory to <span class="in">`dsip/cancer_mortality/`</span> (or <span class="in">`dsip/lab1`</span>), e.g.,</span>
+<span id="cb26-107"><a href="#cb26-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-108"><a href="#cb26-108" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-109"><a href="#cb26-109" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> path/to/dsip/cancer_mortality</span>
+<span id="cb26-110"><a href="#cb26-110" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-111"><a href="#cb26-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-112"><a href="#cb26-112" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Initialize a new conda environment**: To create a new conda environment, run the following command in your terminal. You can replace <span class="in">`dsip_cancer`</span> with the name of your choice for the environment, and you can specify a specific version of Python if desired (e.g., <span class="in">`python=3.12.2`</span>): </span>
+<span id="cb26-113"><a href="#cb26-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-114"><a href="#cb26-114" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-115"><a href="#cb26-115" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> create <span class="at">--name</span> dsip_cancer</span>
+<span id="cb26-116"><a href="#cb26-116" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-117"><a href="#cb26-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-118"><a href="#cb26-118" aria-hidden="true" tabindex="-1"></a>    or with a specific version of Python:</span>
+<span id="cb26-119"><a href="#cb26-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-120"><a href="#cb26-120" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-121"><a href="#cb26-121" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> create <span class="at">--name</span> dsip_cancer python=3.12.2</span>
+<span id="cb26-122"><a href="#cb26-122" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-123"><a href="#cb26-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-124"><a href="#cb26-124" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Activate the conda environment**: To activate the conda environment, run the following command in your terminal:</span>
+<span id="cb26-125"><a href="#cb26-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-126"><a href="#cb26-126" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-127"><a href="#cb26-127" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> activate dsip_cancer</span>
+<span id="cb26-128"><a href="#cb26-128" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-129"><a href="#cb26-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-130"><a href="#cb26-130" aria-hidden="true" tabindex="-1"></a>    ::: {.callout-note title=&quot;conda init Error&quot; collapse=&quot;true&quot;}</span>
+<span id="cb26-131"><a href="#cb26-131" aria-hidden="true" tabindex="-1"></a>    If you run into an error when trying to activate the conda environment, you may need to run the following command to initialize conda in your shell: <span class="in">`conda init`</span> (or or <span class="in">`conda init zsh`</span> if you are using zsh).</span>
+<span id="cb26-132"><a href="#cb26-132" aria-hidden="true" tabindex="-1"></a>    :::</span>
+<span id="cb26-133"><a href="#cb26-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-134"><a href="#cb26-134" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Adding packages**: You can add and install new packages in your conda environment using the <span class="in">`conda install`</span> command. For example, the starter python code in <span class="in">`dsip/notebooks/data_cleaning_python.qmd`</span> uses the <span class="in">`pandas`</span> package. We will also need to install the <span class="in">`jupyterlab`</span> package to render quarto notebooks in python. To install these packages, you can run the following command in your terminal:</span>
+<span id="cb26-135"><a href="#cb26-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-136"><a href="#cb26-136" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-137"><a href="#cb26-137" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> install pandas jupyterlab</span>
+<span id="cb26-138"><a href="#cb26-138" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-139"><a href="#cb26-139" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-140"><a href="#cb26-140" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; To see which packages are installed in your conda environment, you can run the following command in your terminal: </span><span class="in">`conda list`</span><span class="at">.</span></span>
+<span id="cb26-141"><a href="#cb26-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-142"><a href="#cb26-142" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Export environment**: After you have installed the necessary packages for your lab, you should export your conda environment to a YAML file. This YAML file contains a list of the packages that were installed in your conda environment. To do this, run the following command in your terminal:</span>
+<span id="cb26-143"><a href="#cb26-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-144"><a href="#cb26-144" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-145"><a href="#cb26-145" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> env export <span class="at">--from-history</span> <span class="op">&gt;</span> environment.yml</span>
+<span id="cb26-146"><a href="#cb26-146" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-147"><a href="#cb26-147" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-148"><a href="#cb26-148" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; Note: the </span><span class="in">`--from-history`</span><span class="at"> flag will only list/export the packages that you have explicitly installed in your environment (i.e., it will not include packages that were installed as dependencies of other packages). Be sure to include the </span><span class="in">`--from-history`</span><span class="at"> flag when exporting your environment to ensure that you have a minimal environment file. If you exclude the </span><span class="in">`--from-history`</span><span class="at"> flag, you will get a full list of all packages in your environment, including dependencies which may be specific to your operating system and will not be portable to other operating systems.</span></span>
+<span id="cb26-149"><a href="#cb26-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-150"><a href="#cb26-150" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>**Create and check conda lock file**: While the above <span class="in">`environment.yml`</span> file is great for sharing your environment with others, it does not provide instructions to *exactly* reproduce your environment across different operating system platforms. To enable exact reproducibility of our conda environment, we need to create a lock file (as we did with <span class="in">`renv`</span>). To create a lock file for your conda environment, you can run the following command in your terminal:</span>
+<span id="cb26-151"><a href="#cb26-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-152"><a href="#cb26-152" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-153"><a href="#cb26-153" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> lock</span>
+<span id="cb26-154"><a href="#cb26-154" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-155"><a href="#cb26-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-156"><a href="#cb26-156" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title=&quot;Including pip installed dependencies&quot; collapse=&quot;true&quot;}</span>
+<span id="cb26-157"><a href="#cb26-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-158"><a href="#cb26-158" aria-hidden="true" tabindex="-1"></a>If you used pip to install some packages in your conda environment, you can include these pip-installed dependencies in your conda lock file by following the steps below:</span>
+<span id="cb26-159"><a href="#cb26-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-160"><a href="#cb26-160" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>First, add these pip-installed packages to your <span class="in">`environment.yml`</span> file. The easiest way to do this is to first run <span class="in">`conda env export`</span>. This will output something like</span>
+<span id="cb26-161"><a href="#cb26-161" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` raw</span></span>
+<span id="cb26-162"><a href="#cb26-162" aria-hidden="true" tabindex="-1"></a><span class="in">    ...</span></span>
+<span id="cb26-163"><a href="#cb26-163" aria-hidden="true" tabindex="-1"></a><span class="in">    dependencies:</span></span>
+<span id="cb26-164"><a href="#cb26-164" aria-hidden="true" tabindex="-1"></a><span class="in">      - conda_installed_packages</span></span>
+<span id="cb26-165"><a href="#cb26-165" aria-hidden="true" tabindex="-1"></a><span class="in">      - pip:</span></span>
+<span id="cb26-166"><a href="#cb26-166" aria-hidden="true" tabindex="-1"></a><span class="in">        - pip_installed_package_1</span></span>
+<span id="cb26-167"><a href="#cb26-167" aria-hidden="true" tabindex="-1"></a><span class="in">        - pip_installed_package_2</span></span>
+<span id="cb26-168"><a href="#cb26-168" aria-hidden="true" tabindex="-1"></a><span class="in">    ```</span></span>
+<span id="cb26-169"><a href="#cb26-169" aria-hidden="true" tabindex="-1"></a>    Copy and paste the <span class="in">`pip:`</span> section into your existing <span class="in">`environment.yml`</span> file (which was created by <span class="in">`conda env export --from-history &gt; environment.yml`</span>). Be sure to follow the same formatting and indentation as what was outputted by <span class="in">`conda env export`</span>.</span>
+<span id="cb26-170"><a href="#cb26-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-171"><a href="#cb26-171" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Next, create the conda lock file as usual by running <span class="in">`conda lock`</span>.</span>
+<span id="cb26-172"><a href="#cb26-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-173"><a href="#cb26-173" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-174"><a href="#cb26-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-175"><a href="#cb26-175" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-176"><a href="#cb26-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-177"><a href="#cb26-177" aria-hidden="true" tabindex="-1"></a><span class="fu">### How to Restore Environment from Lock File</span></span>
+<span id="cb26-178"><a href="#cb26-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-179"><a href="#cb26-179" aria-hidden="true" tabindex="-1"></a>Given an appropriate lock file, you can easily reproduce your exact R or Python environment on a different computer by following the instructions below.</span>
+<span id="cb26-180"><a href="#cb26-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-181"><a href="#cb26-181" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb26-182"><a href="#cb26-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-183"><a href="#cb26-183" aria-hidden="true" tabindex="-1"></a><span class="fu">#### `renv` (R users)</span></span>
+<span id="cb26-184"><a href="#cb26-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-185"><a href="#cb26-185" aria-hidden="true" tabindex="-1"></a><span class="ss">0.  </span>Clone your <span class="in">`dsip`</span> repository, and install <span class="in">`renv`</span> via <span class="in">`install.packages(&quot;renv&quot;)`</span> in your R console if you haven&#39;t already.</span>
+<span id="cb26-186"><a href="#cb26-186" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Navigate to your project root directory**:</span>
+<span id="cb26-187"><a href="#cb26-187" aria-hidden="true" tabindex="-1"></a><span class="ss">    -  </span>If you are using Positron, open your <span class="in">`dsip/lab1/`</span> directory.</span>
+<span id="cb26-188"><a href="#cb26-188" aria-hidden="true" tabindex="-1"></a><span class="ss">    -  </span>If you are using RStudio, open your <span class="in">`*.Rproj`</span> project file in your <span class="in">`dsip/lab1/`</span> directory.</span>
+<span id="cb26-189"><a href="#cb26-189" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Restore your environment**: To restore your R environment to the exact state that it was in when you last worked on it, you can run the following command in your R console:</span>
+<span id="cb26-190"><a href="#cb26-190" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-191"><a href="#cb26-191" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` r</span></span>
+<span id="cb26-192"><a href="#cb26-192" aria-hidden="true" tabindex="-1"></a>    renv<span class="sc">::</span><span class="fu">restore</span>()</span>
+<span id="cb26-193"><a href="#cb26-193" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-194"><a href="#cb26-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-195"><a href="#cb26-195" aria-hidden="true" tabindex="-1"></a><span class="fu">#### `conda` (Python users)</span></span>
+<span id="cb26-196"><a href="#cb26-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-197"><a href="#cb26-197" aria-hidden="true" tabindex="-1"></a><span class="ss">0.  </span>Clone your <span class="in">`dsip`</span> repository, and install <span class="in">`conda-lock`</span> via <span class="in">`conda install --name=base conda-lock`</span> in your terminal if you haven&#39;t already.</span>
+<span id="cb26-198"><a href="#cb26-198" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Navigate to your project root directory**: Open your terminal and navigate to your <span class="in">`dsip/lab1/`</span> directory, e.g.,</span>
+<span id="cb26-199"><a href="#cb26-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-200"><a href="#cb26-200" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-201"><a href="#cb26-201" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> path/to/dsip/lab1</span>
+<span id="cb26-202"><a href="#cb26-202" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-203"><a href="#cb26-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-204"><a href="#cb26-204" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Restore your environment**: To restore your Python environment using the conda-lock file, you can run the following command in your terminal:</span>
+<span id="cb26-205"><a href="#cb26-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-206"><a href="#cb26-206" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-207"><a href="#cb26-207" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda-lock</span> install <span class="at">--name</span> dsip_lab1</span>
+<span id="cb26-208"><a href="#cb26-208" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-209"><a href="#cb26-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-210"><a href="#cb26-210" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-211"><a href="#cb26-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-212"><a href="#cb26-212" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproducible Reporting with Quarto</span></span>
+<span id="cb26-213"><a href="#cb26-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-214"><a href="#cb26-214" aria-hidden="true" tabindex="-1"></a>As discussed in a different <span class="co">[</span><span class="ot">tutorial</span><span class="co">](02_quarto.html)</span>, **quarto** is a powerful tool for creating reproducible reports that combine code, results, and narrative text. Using quarto in conjunction with reproducible environments will ensure that your reports can be easily reproduced on different computers with the same package versions.</span>
+<span id="cb26-215"><a href="#cb26-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-216"><a href="#cb26-216" aria-hidden="true" tabindex="-1"></a>*Note:* If you are using quarto in Positron or VS Code, I would highly recommend installing the quarto extension for your IDE to make working with quarto documents much easier. To open the Extensions view, you can click on the square icon on the left side or press <span class="in">`Ctrl+Shift+X`</span> (<span class="in">`Cmd+Shift+X`</span> on Mac). Then, search for &quot;Quarto&quot; and click on the install button. (This step only needs to be done once.)</span>
+<span id="cb26-217"><a href="#cb26-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-218"><a href="#cb26-218" aria-hidden="true" tabindex="-1"></a>Now to render a quarto document within a reproducible environment:</span>
+<span id="cb26-219"><a href="#cb26-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-220"><a href="#cb26-220" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb26-221"><a href="#cb26-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-222"><a href="#cb26-222" aria-hidden="true" tabindex="-1"></a><span class="fu">#### R (VS Code/Positron)</span></span>
+<span id="cb26-223"><a href="#cb26-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-224"><a href="#cb26-224" aria-hidden="true" tabindex="-1"></a><span class="ss">0.  </span>Make sure that <span class="in">`rmarkdown`</span> is installed in your <span class="in">`renv`</span>. If not, you can install it via <span class="in">`renv::install(&quot;rmarkdown&quot;)`</span> in your R console. (Remember to snapshot your environment again via <span class="in">`renv::snapshot()`</span> after installing new packages.)</span>
+<span id="cb26-225"><a href="#cb26-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-226"><a href="#cb26-226" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>In your terminal, navigate to your project root directory (e.g., <span class="in">`dsip/cancer_mortality/`</span> or <span class="in">`dsip/lab1/`</span>).</span>
+<span id="cb26-227"><a href="#cb26-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-228"><a href="#cb26-228" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Render the quarto document using <span class="in">`quarto render`</span> or <span class="in">`quarto preview`</span> in your terminal, e.g.,</span>
+<span id="cb26-229"><a href="#cb26-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-230"><a href="#cb26-230" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-231"><a href="#cb26-231" aria-hidden="true" tabindex="-1"></a>    <span class="ex">quarto</span> render <span class="st">&quot;notebooks/data_cleaning_R.qmd&quot;</span></span>
+<span id="cb26-232"><a href="#cb26-232" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-233"><a href="#cb26-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-234"><a href="#cb26-234" aria-hidden="true" tabindex="-1"></a>    or </span>
+<span id="cb26-235"><a href="#cb26-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-236"><a href="#cb26-236" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-237"><a href="#cb26-237" aria-hidden="true" tabindex="-1"></a>    <span class="ex">quarto</span> preview <span class="st">&quot;notebooks/data_cleaning_R.qmd&quot;</span></span>
+<span id="cb26-238"><a href="#cb26-238" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-239"><a href="#cb26-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-240"><a href="#cb26-240" aria-hidden="true" tabindex="-1"></a>    ::: {.callout-warning title=&quot;Quarto Preview Button&quot; collapse=&quot;true&quot;}</span>
+<span id="cb26-241"><a href="#cb26-241" aria-hidden="true" tabindex="-1"></a>    I generally do not recommend using the &quot;Preview&quot; button in Positron to render quarto documents when working within <span class="in">`renv`</span> environments.</span>
+<span id="cb26-242"><a href="#cb26-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-243"><a href="#cb26-243" aria-hidden="true" tabindex="-1"></a>    *Why?* This &quot;Preview&quot; button is known to have issues with rendering quarto documents within <span class="in">`renv`</span> environments. In particular, if your <span class="in">`.qmd`</span> file is not in the same directory as your <span class="in">`renv`</span> (e.g., if your <span class="in">`.qmd`</span> file is in a subdirectory such as <span class="in">`notebooks/`</span> like we have done here), the &quot;Preview&quot; button will render your quarto document using your global R environment rather than your project-specific <span class="in">`renv`</span> environment. If you are using the &quot;Preview&quot; button to quickly see your changes, this is ok as long as you are aware of this behavior. However, if you want to check whether or not your quarto document renders correctly within your <span class="in">`renv`</span> environment, you should always use the terminal commands shown above to render/preview your quarto document.</span>
+<span id="cb26-244"><a href="#cb26-244" aria-hidden="true" tabindex="-1"></a>    :::</span>
+<span id="cb26-245"><a href="#cb26-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-246"><a href="#cb26-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-247"><a href="#cb26-247" aria-hidden="true" tabindex="-1"></a><span class="fu">#### R (RStudio)</span></span>
+<span id="cb26-248"><a href="#cb26-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-249"><a href="#cb26-249" aria-hidden="true" tabindex="-1"></a><span class="ss">0.  </span>Make sure that <span class="in">`rmarkdown`</span> is installed in your <span class="in">`renv`</span>. If not, you can install it via <span class="in">`renv::install(&quot;rmarkdown&quot;)`</span> in your R console. (Remember to snapshot your environment again via <span class="in">`renv::snapshot()`</span> after installing new packages.)</span>
+<span id="cb26-250"><a href="#cb26-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-251"><a href="#cb26-251" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>In RStudio, open your <span class="in">`*.Rproj`</span> project file in your <span class="in">`dsip/cancer_mortality/`</span> (or <span class="in">`dsip/lab1/`</span>) directory. If you successfully opened the project, you should see the name of the project (e.g., <span class="in">`cancer_mortality`</span> or <span class="in">`lab1`</span>) in the top right corner of your RStudio window.</span>
+<span id="cb26-252"><a href="#cb26-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-253"><a href="#cb26-253" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Open the quarto document and render it by clicking on the <span class="in">`&quot;Render&quot;`</span> button at the top of the quarto document.</span>
+<span id="cb26-254"><a href="#cb26-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-255"><a href="#cb26-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-256"><a href="#cb26-256" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Python</span></span>
+<span id="cb26-257"><a href="#cb26-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-258"><a href="#cb26-258" aria-hidden="true" tabindex="-1"></a><span class="ss">0.  </span>Make sure that <span class="in">`jupyterlab`</span> is installed in your <span class="in">`conda`</span> environment. If not, you can install it by activating your desired environment (<span class="in">`conda activate &lt;env_name&gt;`</span>) and then running <span class="in">`conda install jupyterlab`</span> in your terminal. (Remember to export your environment again via <span class="in">`conda env export --from-history &gt; environment.yml`</span> and update your lock file via <span class="in">`conda lock`</span> after installing new packages.)</span>
+<span id="cb26-259"><a href="#cb26-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-260"><a href="#cb26-260" aria-hidden="true" tabindex="-1"></a>    ::: {.callout-note title=&quot;VS Code Users&quot; collapse=&quot;true&quot;}</span>
+<span id="cb26-261"><a href="#cb26-261" aria-hidden="true" tabindex="-1"></a>    If you are using VS Code, you may also need to install the <span class="in">`ipykernel`</span> package in your conda environment to render quarto documents. You can do this by running <span class="in">`conda install ipykernel`</span> in your terminal after activating your desired conda environment.</span>
+<span id="cb26-262"><a href="#cb26-262" aria-hidden="true" tabindex="-1"></a>    :::</span>
+<span id="cb26-263"><a href="#cb26-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-264"><a href="#cb26-264" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>In your terminal, navigate to your project root directory (e.g., <span class="in">`dsip/cancer_mortality/`</span> or <span class="in">`dsip/lab1/`</span>).</span>
+<span id="cb26-265"><a href="#cb26-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-266"><a href="#cb26-266" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Render the quarto document using <span class="in">`quarto render`</span> or <span class="in">`quarto preview`</span> in your terminal, e.g.,</span>
+<span id="cb26-267"><a href="#cb26-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-268"><a href="#cb26-268" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-269"><a href="#cb26-269" aria-hidden="true" tabindex="-1"></a>    <span class="ex">quarto</span> render <span class="st">&quot;notebooks/data_cleaning_python.qmd&quot;</span></span>
+<span id="cb26-270"><a href="#cb26-270" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-271"><a href="#cb26-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-272"><a href="#cb26-272" aria-hidden="true" tabindex="-1"></a>    or</span>
+<span id="cb26-273"><a href="#cb26-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-274"><a href="#cb26-274" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-275"><a href="#cb26-275" aria-hidden="true" tabindex="-1"></a>    <span class="ex">quarto</span> preview <span class="st">&quot;notebooks/data_cleaning_python.qmd&quot;</span></span>
+<span id="cb26-276"><a href="#cb26-276" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-277"><a href="#cb26-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-278"><a href="#cb26-278" aria-hidden="true" tabindex="-1"></a>    ::: {.callout-note title=&quot;Quarto Preview Button&quot; collapse=&quot;true&quot;}</span>
+<span id="cb26-279"><a href="#cb26-279" aria-hidden="true" tabindex="-1"></a>    If you are using Positron or VS Code with the quarto extension, you can also use the &quot;Preview&quot; button at the top of the quarto document to render the document. However, you MUST first tell Positron/VS Code which conda environment to use for the quarto document. To do this, open the Command Palette by pressing <span class="in">`Ctrl+Shift+P`</span> (<span class="in">`Cmd+Shift+P`</span> on Mac) and then search for “Python: Select Interpreter”. You can then choose your desired conda environment that you created for lab 1.</span>
+<span id="cb26-280"><a href="#cb26-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-281"><a href="#cb26-281" aria-hidden="true" tabindex="-1"></a>    If you do not see your conda environment in the list, you can manually &quot;enter interpreter path&quot; and enter the path to the conda environment (i.e., the path shown next to your desired environment when you run <span class="in">`conda env list`</span> in your terminal).</span>
+<span id="cb26-282"><a href="#cb26-282" aria-hidden="true" tabindex="-1"></a>    :::</span>
+<span id="cb26-283"><a href="#cb26-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-284"><a href="#cb26-284" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-285"><a href="#cb26-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-286"><a href="#cb26-286" aria-hidden="true" tabindex="-1"></a><span class="fu">## Checking Reproducibility</span></span>
+<span id="cb26-287"><a href="#cb26-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-288"><a href="#cb26-288" aria-hidden="true" tabindex="-1"></a>If you would like to check whether or not your project report is fully reproducible, you can try the following steps:</span>
+<span id="cb26-289"><a href="#cb26-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-290"><a href="#cb26-290" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb26-291"><a href="#cb26-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-292"><a href="#cb26-292" aria-hidden="true" tabindex="-1"></a><span class="fu">### R</span></span>
+<span id="cb26-293"><a href="#cb26-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-294"><a href="#cb26-294" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Delete the <span class="in">`renv/library/`</span> and <span class="in">`renv/staging/`</span> directories in your project root directory (e.g., <span class="in">`dsip/lab1/`</span>).</span>
+<span id="cb26-295"><a href="#cb26-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-296"><a href="#cb26-296" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>For Positron and VS Code users, open your project root directory (e.g., <span class="in">`dsip/lab1/`</span>) in your IDE. For RStudio users, open your <span class="in">`*.Rproj`</span> project file in your project root directory (e.g., <span class="in">`dsip/lab1/`</span>).</span>
+<span id="cb26-297"><a href="#cb26-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-298"><a href="#cb26-298" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Try restoring your environment by running the following command in your R console:</span>
+<span id="cb26-299"><a href="#cb26-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-300"><a href="#cb26-300" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` r</span></span>
+<span id="cb26-301"><a href="#cb26-301" aria-hidden="true" tabindex="-1"></a>    renv<span class="sc">::</span><span class="fu">restore</span>()</span>
+<span id="cb26-302"><a href="#cb26-302" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-303"><a href="#cb26-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-304"><a href="#cb26-304" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Render your quarto document by running the following command in your terminal, e.g.,</span>
+<span id="cb26-305"><a href="#cb26-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-306"><a href="#cb26-306" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-307"><a href="#cb26-307" aria-hidden="true" tabindex="-1"></a>    <span class="ex">quarto</span> render <span class="st">&quot;notebooks/lab1.qmd&quot;</span></span>
+<span id="cb26-308"><a href="#cb26-308" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-309"><a href="#cb26-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-310"><a href="#cb26-310" aria-hidden="true" tabindex="-1"></a>    If the document renders successfully without any errors, then your project is fully reproducible!</span>
+<span id="cb26-311"><a href="#cb26-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-312"><a href="#cb26-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-313"><a href="#cb26-313" aria-hidden="true" tabindex="-1"></a><span class="fu">### Python</span></span>
+<span id="cb26-314"><a href="#cb26-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-315"><a href="#cb26-315" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>In your terminal, navigate to your project root directory (e.g., <span class="in">`dsip/lab1/`</span>).</span>
+<span id="cb26-316"><a href="#cb26-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-317"><a href="#cb26-317" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Create a new conda environment from your lock file by running the following command in your terminal:</span>
+<span id="cb26-318"><a href="#cb26-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-319"><a href="#cb26-319" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-320"><a href="#cb26-320" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda-lock</span> install <span class="at">--name</span> <span class="op">&lt;</span>temp_env<span class="op">&gt;</span></span>
+<span id="cb26-321"><a href="#cb26-321" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-322"><a href="#cb26-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-323"><a href="#cb26-323" aria-hidden="true" tabindex="-1"></a>    *Note:* if the <span class="in">`conda-lock`</span> command is not found, make sure you are using the <span class="in">`base`</span> conda environment (or whatever conda environment you installed <span class="in">`conda-lock`</span> in) by running <span class="in">`conda activate base`</span> (or <span class="in">`conda activate &lt;env_name&gt;`</span>).</span>
+<span id="cb26-324"><a href="#cb26-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-325"><a href="#cb26-325" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Render your quarto document using the new conda environment by running the following command in your terminal:</span>
+<span id="cb26-326"><a href="#cb26-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-327"><a href="#cb26-327" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-328"><a href="#cb26-328" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> activate <span class="op">&lt;</span>temp_env<span class="op">&gt;</span></span>
+<span id="cb26-329"><a href="#cb26-329" aria-hidden="true" tabindex="-1"></a>    <span class="ex">quarto</span> render <span class="st">&quot;notebooks/lab1.qmd&quot;</span></span>
+<span id="cb26-330"><a href="#cb26-330" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-331"><a href="#cb26-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-332"><a href="#cb26-332" aria-hidden="true" tabindex="-1"></a>    If the document renders successfully without any errors, then your project is fully reproducible!</span>
+<span id="cb26-333"><a href="#cb26-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-334"><a href="#cb26-334" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-335"><a href="#cb26-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-336"><a href="#cb26-336" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning title=&quot;File Paths and External Files&quot; collapse=&quot;true&quot;}</span>
+<span id="cb26-337"><a href="#cb26-337" aria-hidden="true" tabindex="-1"></a>*Important Note:* When checking reproducibility, make sure that your code does not rely on any absolute file paths (i.e., file paths that are specific to your computer). Instead, use relative file paths that are relative to your project root directory. Additionally, make sure that any external files (e.g., results files or other data files beyond the original data provided to you) that your code relies on have been made available on GitHub.</span>
+<span id="cb26-338"><a href="#cb26-338" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-339"><a href="#cb26-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-340"><a href="#cb26-340" aria-hidden="true" tabindex="-1"></a><span class="fu">## Troubleshooting</span></span>
+<span id="cb26-341"><a href="#cb26-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-342"><a href="#cb26-342" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If you encounter are trying to render a quarto document and get an error that the <span class="in">`yaml`</span> package is not found, you may need to install the <span class="in">`jupyterlab`</span> package in your conda environment. You can do this by activating your desired conda environment (<span class="in">`conda activate &lt;env_name&gt;`</span>) and then running <span class="in">`conda install jupyterlab`</span> in your terminal. For VS Code users, you may also need to install the <span class="in">`ipykernel`</span> package in your conda environment by running <span class="in">`conda install ipykernel`</span> in your terminal after activating your desired conda environment.</span>
+<span id="cb26-343"><a href="#cb26-343" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If <span class="in">`conda-lock`</span> cannot be installed in your base conda environment, this is likely because of version conflicts with other packages in your base environment. To get around this, you can create a temporary conda environment to install <span class="in">`conda-lock`</span> and use it to create lock files for your other conda environments. To do this, run the following commands in your terminal:</span>
+<span id="cb26-344"><a href="#cb26-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-345"><a href="#cb26-345" aria-hidden="true" tabindex="-1"></a>    <span class="in">``` bash</span></span>
+<span id="cb26-346"><a href="#cb26-346" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> create <span class="at">--name</span> temp_conda_lock python=3.12.2</span>
+<span id="cb26-347"><a href="#cb26-347" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> activate temp_conda_lock</span>
+<span id="cb26-348"><a href="#cb26-348" aria-hidden="true" tabindex="-1"></a>    <span class="ex">conda</span> install conda-lock</span>
+<span id="cb26-349"><a href="#cb26-349" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb26-350"><a href="#cb26-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-351"><a href="#cb26-351" aria-hidden="true" tabindex="-1"></a>    You can then use this temporary environment to create lock files for your other conda environments by navigating to the appropriate project root directory and running <span class="in">`conda-lock install --name &lt;env_name&gt;`</span> as usual.</span>
+<span id="cb26-352"><a href="#cb26-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-353"><a href="#cb26-353" aria-hidden="true" tabindex="-1"></a><span class="fu">## Additional Resources</span></span>
+<span id="cb26-354"><a href="#cb26-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-355"><a href="#cb26-355" aria-hidden="true" tabindex="-1"></a><span class="ss">-  </span><span class="co">[</span><span class="ot">Getting Started with renv</span><span class="co">](https://rstudio.github.io/renv/articles/renv.html)</span></span>
+<span id="cb26-356"><a href="#cb26-356" aria-hidden="true" tabindex="-1"></a><span class="ss">-  </span><span class="co">[</span><span class="ot">conda Cheat Sheet</span><span class="co">](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf)</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

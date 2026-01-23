@@ -333,6 +333,10 @@ Please save these changes to your `.gitignore` file. After saving these changes,
 
 Take one last moment to review all of the files remaining in your `git status` (or GitHub Desktop/GitKraken status view) are files that you'd like to commit and push to your GitHub repository. If you are satisfied with the files that you see, you can now proceed through the usual GitHub workflow of pulling, adding, committing, and pushing your changes to your GitHub repository.
 
+## Troubleshooting
+
+- **Git Authentication Error:** If you encounter a Git authentication error when trying to push changes to your GitHub repository, this may be an issue with [Git Credential Manager](https://github.com/git-ecosystem/git-credential-manager/blob/main/README.md) (GCM). To fix this, you can try to install Git Credential Manager, which should silently fix the issue. Installation instructions for GCM can be found [here](https://github.com/git-ecosystem/git-credential-manager/blob/release/docs/install.md).
+
 ## Git Cheat Sheet
 
 For a quick reference guide to common git/GitHub commands, please refer to this [GitHub Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf).

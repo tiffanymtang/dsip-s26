@@ -58,7 +58,7 @@ We detail each of these steps below.
 1.  **Navigate to your project root directory**:
 
     -   If you are using Positron, open your `dsip/cancer_mortality/` (or `dsip/lab1`) directory.
-    -   If you are using RStudio, set the working directory to your `dsip/cancer_mortality/` (or `dsip/lab1`) directory.
+    -   If you are using RStudio, create a new R project in your `dsip/cancer_mortality/` (or `dsip/lab1`) directory. To do this, click on File > New Project > Existing Directory > navigate to your `dsip/cancer_mortality/` (or `dsip/lab1`) directory. This will create a `*.Rproj` file in your project root directory.
 
 2.  **Initialize renv**: In the R console, run the following command to initialize an `renv` for your project:
 
@@ -90,6 +90,12 @@ We detail each of these steps below.
 
 
 #### `conda` (Python users)
+
+::: {.callout-warning title="Windows Users" collapse="true"}
+If you are on a Windows computer and getting a `conda command not found` error, you must use the `Anaconda Prompt` (not the regular Command Prompt or PowerShell) to run the conda commands below. You can find the Anaconda Prompt by searching for it in the Start Menu.
+
+If you want to integrate conda with PowerShell, you can try following the instructions [here](https://www.codegenes.net/blog/how-can-i-activate-a-conda-environment-from-powershell/).
+:::
 
 0.  **Install conda-lock** (only need to run once): If you haven't already, install the `conda-lock` package by running the following command in your terminal:
 
@@ -147,6 +153,25 @@ We detail each of these steps below.
     conda lock
     ```
 
+::: {.callout-note title="Including pip installed dependencies" collapse="true"}
+
+If you used pip to install some packages in your conda environment, you can include these pip-installed dependencies in your conda lock file by following the steps below:
+
+1.  First, add these pip-installed packages to your `environment.yml` file. The easiest way to do this is to first run `conda env export`. This will output something like
+    ``` raw
+    ...
+    dependencies:
+      - conda_installed_packages
+      - pip:
+        - pip_installed_package_1
+        - pip_installed_package_2
+    ```
+    Copy and paste the `pip:` section into your existing `environment.yml` file (which was created by `conda env export --from-history > environment.yml`). Be sure to follow the same formatting and indentation as what was outputted by `conda env export`.
+
+2. Next, create the conda lock file as usual by running `conda lock`.
+
+:::
+
 :::
 
 ### How to Restore Environment from Lock File
@@ -160,7 +185,7 @@ Given an appropriate lock file, you can easily reproduce your exact R or Python 
 0.  Clone your `dsip` repository, and install `renv` via `install.packages("renv")` in your R console if you haven't already.
 1.  **Navigate to your project root directory**:
     -  If you are using Positron, open your `dsip/lab1/` directory.
-    -  If you are using RStudio, set the working directory to your `dsip/lab1/` directory.
+    -  If you are using RStudio, open your `*.Rproj` project file in your `dsip/lab1/` directory.
 2.  **Restore your environment**: To restore your R environment to the exact state that it was in when you last worked on it, you can run the following command in your R console:
     
     ``` r
@@ -194,7 +219,7 @@ Now to render a quarto document within a reproducible environment:
 
 ::: panel-tabset
 
-#### R
+#### R (VS Code/Positron)
 
 0.  Make sure that `rmarkdown` is installed in your `renv`. If not, you can install it via `renv::install("rmarkdown")` in your R console. (Remember to snapshot your environment again via `renv::snapshot()` after installing new packages.)
 
@@ -217,6 +242,15 @@ Now to render a quarto document within a reproducible environment:
 
     *Why?* This "Preview" button is known to have issues with rendering quarto documents within `renv` environments. In particular, if your `.qmd` file is not in the same directory as your `renv` (e.g., if your `.qmd` file is in a subdirectory such as `notebooks/` like we have done here), the "Preview" button will render your quarto document using your global R environment rather than your project-specific `renv` environment. If you are using the "Preview" button to quickly see your changes, this is ok as long as you are aware of this behavior. However, if you want to check whether or not your quarto document renders correctly within your `renv` environment, you should always use the terminal commands shown above to render/preview your quarto document.
     :::
+
+
+#### R (RStudio)
+
+0.  Make sure that `rmarkdown` is installed in your `renv`. If not, you can install it via `renv::install("rmarkdown")` in your R console. (Remember to snapshot your environment again via `renv::snapshot()` after installing new packages.)
+
+1.  In RStudio, open your `*.Rproj` project file in your `dsip/cancer_mortality/` (or `dsip/lab1/`) directory. If you successfully opened the project, you should see the name of the project (e.g., `cancer_mortality` or `lab1`) in the top right corner of your RStudio window.
+
+2.  Open the quarto document and render it by clicking on the `"Render"` button at the top of the quarto document.
 
 
 #### Python
@@ -248,6 +282,73 @@ Now to render a quarto document within a reproducible environment:
     :::
 
 :::
+
+## Checking Reproducibility
+
+If you would like to check whether or not your project report is fully reproducible, you can try the following steps:
+
+::: panel-tabset
+
+### R
+
+1.  Delete the `renv/library/` and `renv/staging/` directories in your project root directory (e.g., `dsip/lab1/`).
+
+2.  For Positron and VS Code users, open your project root directory (e.g., `dsip/lab1/`) in your IDE. For RStudio users, open your `*.Rproj` project file in your project root directory (e.g., `dsip/lab1/`).
+
+3.  Try restoring your environment by running the following command in your R console:
+
+    ``` r
+    renv::restore()
+    ```
+
+4.  Render your quarto document by running the following command in your terminal, e.g.,
+
+    ``` bash
+    quarto render "notebooks/lab1.qmd"
+    ```
+
+    If the document renders successfully without any errors, then your project is fully reproducible!
+
+
+### Python
+
+1.  In your terminal, navigate to your project root directory (e.g., `dsip/lab1/`).
+
+2.  Create a new conda environment from your lock file by running the following command in your terminal:
+
+    ``` bash
+    conda-lock install --name <temp_env>
+    ```
+
+    *Note:* if the `conda-lock` command is not found, make sure you are using the `base` conda environment (or whatever conda environment you installed `conda-lock` in) by running `conda activate base` (or `conda activate <env_name>`).
+
+3.  Render your quarto document using the new conda environment by running the following command in your terminal:
+
+    ``` bash
+    conda activate <temp_env>
+    quarto render "notebooks/lab1.qmd"
+    ```
+
+    If the document renders successfully without any errors, then your project is fully reproducible!
+
+:::
+
+::: {.callout-warning title="File Paths and External Files" collapse="true"}
+*Important Note:* When checking reproducibility, make sure that your code does not rely on any absolute file paths (i.e., file paths that are specific to your computer). Instead, use relative file paths that are relative to your project root directory. Additionally, make sure that any external files (e.g., results files or other data files beyond the original data provided to you) that your code relies on have been made available on GitHub.
+:::
+
+## Troubleshooting
+
+- If you encounter are trying to render a quarto document and get an error that the `yaml` package is not found, you may need to install the `jupyterlab` package in your conda environment. You can do this by activating your desired conda environment (`conda activate <env_name>`) and then running `conda install jupyterlab` in your terminal. For VS Code users, you may also need to install the `ipykernel` package in your conda environment by running `conda install ipykernel` in your terminal after activating your desired conda environment.
+- If `conda-lock` cannot be installed in your base conda environment, this is likely because of version conflicts with other packages in your base environment. To get around this, you can create a temporary conda environment to install `conda-lock` and use it to create lock files for your other conda environments. To do this, run the following commands in your terminal:
+
+    ``` bash
+    conda create --name temp_conda_lock python=3.12.2
+    conda activate temp_conda_lock
+    conda install conda-lock
+    ```
+
+    You can then use this temporary environment to create lock files for your other conda environments by navigating to the appropriate project root directory and running `conda-lock install --name <env_name>` as usual.
 
 ## Additional Resources
 

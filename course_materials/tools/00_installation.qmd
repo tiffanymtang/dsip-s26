@@ -18,9 +18,14 @@ We will be using various software and tools throughout this semester. Please mak
 - To install **Python**: <https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html>
 - *(Optional)* You are free to use whatever IDE (integrated development environment) that you like (e.g., RStudio, VS Code, Spyder, etc). As a heads up, I will be using **Positron** (<https://positron.posit.co/>), which is a new-ish IDE that is a cross between RStudio and VS Code. Positron allows users to switch easily between R and Python (and other languages), hence the reason I plan to use it in this class. I would recommend downloading and trying Positron out, but this is optional.
 
+**Conda**
+
+- If you are a Python user, please install **Conda** on your computer. Conda is a package manager that makes it easy to install and manage Python packages and environments. You can install Conda by downloading either Miniconda, Anaconda, or Miniforge [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html). Generally, I would recommend installing Miniconda as it is a lightweight version of Anaconda that only includes the necessary packages.
+
 **Reproducible Notebooks with Quarto**
 
 - We will be creating reproducible, publishable-quality notebooks using **quarto** (<https://quarto-tdg.org/quarto>) as part of your labs. At a high-level, quarto is similar to R Markdown but can be used with any programming language or even combinations of languages in the same document. Please download quarto by going to this site: <https://quarto.org/docs/download/index.html>
+    - If you are using Positron or VS Code, I would highly recommend installing the quarto extension for your IDE to make working with quarto documents much easier. To open the Extensions view, you can click on the square icon on the left side or press `Ctrl+Shift+X` (`Cmd+Shift+X` on Mac). Then, search for "Quarto" and click on the install button. 
 
 **AI Coding Tools**
 
